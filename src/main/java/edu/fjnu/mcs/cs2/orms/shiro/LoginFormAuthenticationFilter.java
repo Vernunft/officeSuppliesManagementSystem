@@ -1,4 +1,4 @@
-package cn.edu.fjnu.owen.demo.shiro;
+package edu.fjnu.mcs.cs2.orms.shiro;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletRequest;

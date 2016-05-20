@@ -1,4 +1,4 @@
-package cn.edu.fjnu.owen.demo.entity;
+package edu.fjnu.mcs.cs2.orms.entity;
 
 import java.util.Iterator;
 import java.util.List;

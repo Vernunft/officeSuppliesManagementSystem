@@ -1,11 +1,12 @@
-package cn.edu.fjnu.owen.demo.controller;
+package edu.fjnu.mcs.cs2.orms.controller;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import cn.edu.fjnu.owen.demo.entity.ActiveUser;
+
+import edu.fjnu.mcs.cs2.orms.entity.ActiveUser;
 
 
 

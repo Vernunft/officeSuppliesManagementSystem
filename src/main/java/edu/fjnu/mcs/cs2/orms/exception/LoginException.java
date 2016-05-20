@@ -1,4 +1,4 @@
-package cn.edu.fjnu.owen.demo.exception;
+package edu.fjnu.mcs.cs2.orms.exception;
 
 /**
  * <p>Description: 系统自定义的异常类型，实际开发中可能要定义多种异常类型</p>

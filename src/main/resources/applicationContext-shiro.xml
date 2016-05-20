@@ -94,7 +94,7 @@
     <!-- 自定义form认证过虑器 -->
 	<!-- 基于Form表单的身份验证过滤器，不配置将也会注册此过虑器，表单中的用户账号、密码及loginurl将采用默认值，建议配置 -->
 	<bean id="formAuthenticationFilter" 
-	class="cn.edu.fjnu.owen.demo.shiro.LoginFormAuthenticationFilter">
+	class="edu.fjnu.mcs.cs2.orms.shiro.LoginFormAuthenticationFilter">
 		<!-- 表单中账号的input名称 -->
 		<property name="usernameParam" value="username" />
 		<!-- 表单中密码的input名称 -->
@@ -117,7 +117,7 @@
 
 
 	<!-- realm -->
-	<bean id="LoginRealm" class="cn.edu.fjnu.owen.demo.shiro.LoginRealm">
+	<bean id="LoginRealm" class="edu.fjnu.mcs.cs2.orms.shiro.LoginRealm">
 		<property name="credentialsMatcher" ref="credentialsMatcher"/>
 	</bean>
 	

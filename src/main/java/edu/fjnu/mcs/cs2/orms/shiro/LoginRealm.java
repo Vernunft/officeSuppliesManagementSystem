@@ -1,4 +1,4 @@
-package cn.edu.fjnu.owen.demo.shiro;
+package edu.fjnu.mcs.cs2.orms.shiro;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -18,7 +18,7 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 
-import cn.edu.fjnu.owen.demo.entity.ActiveUser;
+import edu.fjnu.mcs.cs2.orms.entity.ActiveUser;
 
 /**
  * @author 李冰冰

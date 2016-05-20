@@ -1,5 +1,5 @@
 
-package cn.edu.fjnu.owen.demo.controller;
+package edu.fjnu.mcs.cs2.orms.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -8,7 +8,7 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import cn.edu.fjnu.owen.demo.exception.LoginException;
+import edu.fjnu.mcs.cs2.orms.exception.LoginException;
 
 /** 
 * @author 李冰冰
