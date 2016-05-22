@@ -58,7 +58,7 @@
 				<!-- /TestShrio/first.do = user  -->
 				
 				<!-- authc 所有的url不许认证才能访问 -->
-				/** =  authc
+				/** =  anon
 			</value>
 		</property>
 	</bean>
