@@ -1,11 +1,5 @@
 package edu.fjnu.mcs.cs2.orms.shiro;
 
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import javax.annotation.Resource;
-
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -33,7 +27,7 @@ public class LoginRealm extends AuthorizingRealm {
 
 	@Override
 	public void setName(String name) {
-		super.setName("testRealm");
+		super.setName("loginRealm");
 	}
 
 	// 支持什么类型的token

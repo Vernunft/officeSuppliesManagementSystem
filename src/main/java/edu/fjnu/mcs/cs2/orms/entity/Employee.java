@@ -1,6 +1,6 @@
 package edu.fjnu.mcs.cs2.orms.entity;
 
-public class EmployeePO {
+public class Employee {
     private Integer id;
 
     private Integer workStatusId;

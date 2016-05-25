@@ -1,6 +1,15 @@
 package edu.fjnu.mcs.cs2.orms.common;
 
 import java.util.List;
+import java.util.Map;
+
+import org.springframework.context.annotation.Primary;
+
+import edu.fjnu.mcs.cs2.orms.entity.Instock;
+import edu.fjnu.mcs.cs2.orms.entity.Outstock;
+import edu.fjnu.mcs.cs2.orms.type.Category;
+import edu.fjnu.mcs.cs2.orms.type.InstockType;
+import edu.fjnu.mcs.cs2.orms.type.OutstockType;
 
 /**
  * 
@@ -10,13 +19,65 @@ import java.util.List;
  * @date 2016年5月21日 下午3:25:27
  */
 public class DTO {
-	private String str;
-	private Integer inte;
 	private Integer currentPage = 1;
 	private Integer size = 10;
-	private Object object;
-	private List<Object> objects;
+	private Map<String, Object> map;
+	private InstockType instockType;
+	private Category category;
+	private List<InstockType> instockTypes;
+	private List<Category> categories;
+	private Instock instock;
+	private Outstock outstock;
+	private OutstockType outstockType;
 	
+	public Outstock getOutstock() {
+		return outstock;
+	}
+	public void setOutstock(Outstock outstock) {
+		this.outstock = outstock;
+	}
+	public OutstockType getOutstockType() {
+		return outstockType;
+	}
+	public void setOutstockType(OutstockType outstockType) {
+		this.outstockType = outstockType;
+	}
+	public Instock getInstock() {
+		return instock;
+	}
+	public void setInstock(Instock instock) {
+		this.instock = instock;
+	}
+	public List<InstockType> getInstockTypes() {
+		return instockTypes;
+	}
+	public void setInstockTypes(List<InstockType> instockTypes) {
+		this.instockTypes = instockTypes;
+	}
+	public List<Category> getCategories() {
+		return categories;
+	}
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
+	}
+	public InstockType getInstockType() {
+		return instockType;
+	}
+	public void setInstockType(InstockType instockType) {
+		this.instockType = instockType;
+	}
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+	public Map<String, Object> getMap() {
+		return map;
+	}
+	public void setMap(Map<String, Object> map) {
+		this.map = map;
+	}
 	public Integer getCurrentPage() {
 		return currentPage;
 	}
@@ -28,30 +89,6 @@ public class DTO {
 	}
 	public void setSize(Integer size) {
 		this.size = size;
-	}
-	public String getStr() {
-		return str;
-	}
-	public void setStr(String str) {
-		this.str = str;
-	}
-	public Integer getInte() {
-		return inte;
-	}
-	public void setInte(Integer inte) {
-		this.inte = inte;
-	}
-	public Object getObject() {
-		return object;
-	}
-	public void setObject(Object object) {
-		this.object = object;
-	}
-	public List<Object> getObjects() {
-		return objects;
-	}
-	public void setObjects(List<Object> objects) {
-		this.objects = objects;
 	}
 	
 }

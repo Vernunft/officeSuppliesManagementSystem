@@ -26,5 +26,13 @@
 org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
 		<property name="securityManager" ref="securityManager" />
 	</bean>
-
+	<!-- 启动 MVC注解 -->
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="objectMapper" ref="myObjectMapper" />
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
 </beans>

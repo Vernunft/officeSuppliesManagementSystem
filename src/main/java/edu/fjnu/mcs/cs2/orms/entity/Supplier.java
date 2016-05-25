@@ -1,6 +1,6 @@
 package edu.fjnu.mcs.cs2.orms.entity;
 
-public class SupplierPO {
+public class Supplier {
     private Integer id;
 
     private Integer typeId;

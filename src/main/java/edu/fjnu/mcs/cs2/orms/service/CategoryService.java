@@ -14,12 +14,14 @@ import com.sun.mail.imap.protocol.MailboxInfo;
 import edu.fjnu.mcs.cs2.orms.dao.TypeDao;
 import edu.fjnu.mcs.cs2.orms.common.DTO;
 import edu.fjnu.mcs.cs2.orms.dao.ResDao;
-import edu.fjnu.mcs.cs2.orms.entity.ResPO;
+import edu.fjnu.mcs.cs2.orms.entity.Res;
 import edu.fjnu.mcs.cs2.orms.entity.Type;
 import edu.fjnu.mcs.cs2.orms.type.Category;
 
 @Service
 public class CategoryService {
+	
+	Map<String, Object> map = new HashMap<>();
 	@Resource
 	TypeDao typeDao;
 
@@ -40,27 +42,26 @@ public class CategoryService {
 	public Map<String, Object> getAllCategoryInfo(int currentPage, int size) {
 		rowCount = resDao.getRowCount();
 		offset = (currentPage - 1) * size;
-		Map<String, Object> map = new HashMap<>();
-		map.put("type",Category.TYPE);
-		map.put("offset", offset);
-		map.put("size", size);
-		Map<String, Object> maps = new HashMap<>();
-		List<Category> categories = typeDao.getAllCategoryInfo(map);
+		Map<String, Object> query = new HashMap<>();
+		query.put("type",Category.type);
+		query.put("offset", offset);
+		query.put("size", size);
+		List<Category> categories = typeDao.getAllCategoryInfo(query);
 		for (Category category : categories) {
-			maps.put("id", category.getId());
-			maps.put("name", category.getName());
+			map.put("id", category.getId());
+			map.put("name", category.getName());
 			category.setChild(typeDao.getChildByParId(category.getId()));
-			maps.put("child", category.getChild());
+			map.put("child", category.getChild());
 		}
-		maps.put("results", categories);
-		maps.put("code", 0);
-		maps.put("currentPage", currentPage);
-		maps.put("size", size);
+		map.put("results", categories);
+		map.put("code", 0);
+		map.put("currentPage", currentPage);
+		map.put("size", size);
 		if (rowCount % size != 0) {
 			totalPage = rowCount/size+1;
 		}
-		maps.put("totalPage", totalPage);
-		return maps;
+		map.put("totalPage", totalPage);
+		return map;
 	}
 
 	/**
@@ -72,20 +73,20 @@ public class CategoryService {
 	 * @return Map<String,Object>    返回类型 
 	 * @throws
 	 */
+	@SuppressWarnings("unchecked")
 	public Map<String, Object> getCategoryInfo(DTO data) {
-		Map<String, Object> map = new HashMap<>();
-		Category category = (Category) data.getObject();
+		Category category = data.getCategory();
 		List<Category> categories = null;
 		if (category.getId()!=null) {
-			 categories= typeDao.getCategoryInfoById(category.getId());
+			 categories= (List<Category>) typeDao.getCategoryInfoById(category.getId());
 		}else {
 			Map<String, Object> query = new HashMap<>();
-			query.put("type", Category.TYPE);
+			query.put("type", Category.type);
 			offset = (data.getCurrentPage() - 1) * data.getSize();
 			query.put("offset",offset );
 			query.put("size", data.getSize());
 			categories=  typeDao.getCategoryInfo(query);
-			rowCount = typeDao.getRowCountByType(Category.TYPE);
+			rowCount = typeDao.getRowCountByType(Category.type);
 			if (rowCount % data.getSize() != 0) {
 				totalPage = rowCount/data.getSize() + 1;
 			}
@@ -115,15 +116,8 @@ public class CategoryService {
 	 * @throws
 	 */
 	public Map<String, Object> addCategory(DTO data) {
-		Map<String, Object> map = new HashMap<>();
-		Category category = (Category) data.getObject();
-		Integer categoryId = category.getId();
-		Map<String, Object> query = new HashMap<>();
-		query.put("id", categoryId);
-		query.put("name", category.getName());
-		query.put("parent", category.getParent());
-		query.put("type", Category.TYPE);
-		if (typeDao.addCategory(query)==1) {
+		Category category = data.getCategory();
+		if (typeDao.insertCategory(category)==1) {
 			map.put("code", 0);
 		}else {
 			map.put("code", 101);
@@ -141,8 +135,7 @@ public class CategoryService {
 	 * @throws
 	 */
 	public Map<String, Object> deleteCategory(DTO data) {
-		Map<String, Object> map = new HashMap<>();
-		Category category = (Category) data.getObject();
+		Category category = data.getCategory();
 		if (typeDao.deleteCategory(category.getId())==1) {
 			map.put("code", 0);
 		}else {

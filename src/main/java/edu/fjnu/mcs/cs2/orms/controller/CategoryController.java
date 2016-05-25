@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.fjnu.mcs.cs2.orms.common.DTO;
-import edu.fjnu.mcs.cs2.orms.entity.ResPO;
+import edu.fjnu.mcs.cs2.orms.entity.Res;
 import edu.fjnu.mcs.cs2.orms.service.CategoryService;
 import edu.fjnu.mcs.cs2.orms.type.Category;
 
@@ -93,8 +93,11 @@ public class CategoryController {
 	 * @throws
 	 */
 	@RequestMapping("/deleteCategory")
+	@ResponseBody
 	public Map<String, Object> deleteCategory(@RequestBody DTO data)throws Exception{
 		return categoryService.deleteCategory(data);
 		
 	}
+	
+	
 }

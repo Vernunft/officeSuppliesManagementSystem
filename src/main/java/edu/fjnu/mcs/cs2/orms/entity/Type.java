@@ -5,13 +5,11 @@ public class Type {
 
     private Integer parent;
 
-    private Integer type;
-
     private String name;
 
     private String remark;
     
-    public static Integer TYPE ;
+    public static Integer type = 1 ;
     
     public Integer getId() {
         return id;
@@ -29,13 +27,6 @@ public class Type {
         this.parent = parent;
     }
 
-//    public Integer getTypeId() {
-//        return typeId;
-//    }
-//
-//    public void setTypeId(Integer typeId) {
-//        this.typeId = typeId;
-//    }
 
     public String getName() {
         return name;
@@ -52,4 +43,18 @@ public class Type {
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
     }
+
+	public Type(Integer id, Integer parent, String name, String remark) {
+		super();
+		this.id = id;
+		this.parent = parent;
+		this.name = name;
+		this.remark = remark;
+	}
+
+	public Type() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+    
 }

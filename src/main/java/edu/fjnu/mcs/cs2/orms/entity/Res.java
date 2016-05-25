@@ -1,6 +1,6 @@
 package edu.fjnu.mcs.cs2.orms.entity;
 
-public class ResPO {
+public class Res {
     private Integer id;
 
     private Integer categoryId;

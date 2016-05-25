@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import edu.fjnu.mcs.cs2.orms.entity.Type;
-import edu.fjnu.mcs.cs2.orms.entity.ResPO;
+import edu.fjnu.mcs.cs2.orms.entity.Res;
 
 @Repository
 public interface ResDao {
@@ -25,7 +25,7 @@ public interface ResDao {
 	 * @return
 	 */
 	@Select("select * from tbl_res order by id limit ${offset},${size}")
-	List<ResPO> getAllCategoryInfo(int offset, int size);
+	List<Res> getAllCategoryInfo(int offset, int size);
 
 	/**
 	 * 查询某物品类别的详细信息
@@ -33,7 +33,7 @@ public interface ResDao {
 	 * @return
 	 */
 	@Select("select * from tbl_res where category_id=#{categoryId}")
-	ResPO getCategotyInfoById(Integer categoryId);
+	Res getCategotyInfoById(Integer categoryId);
 
 
 	
