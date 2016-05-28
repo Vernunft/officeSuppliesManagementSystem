@@ -1,17 +1,19 @@
 package edu.fjnu.mcs.cs2.orms.entity;
 
+import edu.fjnu.mcs.cs2.orms.type.Status;
+
 public class SupplierSupplies {
     private Integer id;
 
-    private Integer supplierId;
+    private Supplier supplier;
 
-    private Integer resId;
+    private Res res;
 
-    private Integer statusId;
+    private Status status;
 
     private Float price;
 
-    private String reserve;
+    private String remark;
 
     public Integer getId() {
         return id;
@@ -21,29 +23,6 @@ public class SupplierSupplies {
         this.id = id;
     }
 
-    public Integer getSupplierId() {
-        return supplierId;
-    }
-
-    public void setSupplierId(Integer supplierId) {
-        this.supplierId = supplierId;
-    }
-
-    public Integer getResId() {
-        return resId;
-    }
-
-    public void setResId(Integer resId) {
-        this.resId = resId;
-    }
-
-    public Integer getStatusId() {
-        return statusId;
-    }
-
-    public void setStatusId(Integer statusId) {
-        this.statusId = statusId;
-    }
 
     public Float getPrice() {
         return price;
@@ -53,11 +32,35 @@ public class SupplierSupplies {
         this.price = price;
     }
 
-    public String getReserve() {
-        return reserve;
+    public Supplier getSupplier() {
+		return supplier;
+	}
+
+	public void setSupplier(Supplier supplier) {
+		this.supplier = supplier;
+	}
+
+	public Res getRes() {
+		return res;
+	}
+
+	public void setRes(Res res) {
+		this.res = res;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public String getRemark() {
+        return remark;
     }
 
-    public void setReserve(String reserve) {
-        this.reserve = reserve == null ? null : reserve.trim();
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
     }
 }

@@ -11,11 +11,15 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import edu.fjnu.mcs.cs2.orms.common.DynaSqlProvider;
+import edu.fjnu.mcs.cs2.orms.entity.Supplier;
 import edu.fjnu.mcs.cs2.orms.entity.Type;
 import edu.fjnu.mcs.cs2.orms.type.Category;
 import edu.fjnu.mcs.cs2.orms.type.Department;
 import edu.fjnu.mcs.cs2.orms.type.InstockType;
 import edu.fjnu.mcs.cs2.orms.type.OutstockType;
+import edu.fjnu.mcs.cs2.orms.type.Status;
+import edu.fjnu.mcs.cs2.orms.type.SupplierType;
+import edu.fjnu.mcs.cs2.orms.type.Unit;
 
 @Repository
 public interface TypeDao {
@@ -154,6 +158,53 @@ public interface TypeDao {
 	 */
 	@Select("select * from tbl_all_kind where id=#{id}")
 	InstockType geInstockTypeById(Integer id);
+	
+	/**
+	 * 
+	 * @Title: getSupplierTypeById 
+	 * @Description: TODO(根据id查询供应商信息) 
+	 * @param @param id
+	 * @param @return    设定文件 
+	 * @return Supplier    返回类型 
+	 * @throws
+	 */
+	@Select("select * from tbl_all_kind where id=#{id}")
+	SupplierType getSupplierTypeById(Integer id);
+	
+	/**
+	 * 
+	 * @Title: getOutstockTypeById 
+	 * @Description: TODO(根据id查询出库类型) 
+	 * @param @param id
+	 * @param @return    设定文件 
+	 * @return OutstockType    返回类型 
+	 * @throws
+	 */
+	@Select("select * from tbl_all_kind where id=#{id}")
+	OutstockType getOutstockTypeById(Integer id);
+	
+	/**
+	 * 
+	 * @Title: getUnitById 
+	 * @Description: TODO(根据id查询物品单位) 
+	 * @param @param id
+	 * @param @return    设定文件 
+	 * @return Unit    返回类型 
+	 * @throws
+	 */
+	@Select("select * from tbl_all_kind where id=#{id}")
+	Unit getUnitById(Integer id);
+	/**
+	 * 
+	 * @Title: getStatusById 
+	 * @Description: TODO(根据id查询供应商供货状态) 
+	 * @param @param id
+	 * @param @return    设定文件 
+	 * @return Status    返回类型 
+	 * @throws
+	 */
+	@Select("select * from tbl_all_kind where id=#{id}")
+	Status getStatusById(Integer id);
 
 	/**
 	 * 
@@ -185,11 +236,27 @@ public interface TypeDao {
 
 	/**
 	 * 
-	 * @Title: getDepInfoByName 
-	 * @Description: TODO(根据部门id查询部门信息) 
-	 * @param @param query
+	 * @Title: insertSupplierType 
+	 * @Description: TODO(添加供应商类别) 
+	 * @param @param supplierType
 	 * @param @return    设定文件 
-	 * @return Department    返回类型 
+	 * @return int    返回类型 
 	 * @throws
 	 */
+	@InsertProvider(type = DynaSqlProvider.class,  
+            method = "insertType")  
+	@Options(useGeneratedKeys = true, keyProperty = "id")
+	int insertSupplierType(SupplierType supplierType);
+
+	/**
+	 * 
+	 * @Title: getSupInfoByType 
+	 * @Description: TODO(查询供应商) 
+	 * @param @param type
+	 * @param @return    设定文件 
+	 * @return List<SupplierType>    返回类型 
+	 * @throws
+	 */
+	@Select("select * from tbl_all_kind where type=#{type}")
+	List<SupplierType> getSupInfoByType(Integer type);
 }

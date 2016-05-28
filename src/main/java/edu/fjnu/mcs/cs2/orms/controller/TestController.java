@@ -94,6 +94,8 @@ public class TestController {
 		instock.setSupplier(supplier);
 		int flag =0;
 		flag=instockDao.insertInstock(instock);
-		System.out.println(flag);
+		if (flag!=0) {
+			System.out.println(flag);
+		}
 	}
 }

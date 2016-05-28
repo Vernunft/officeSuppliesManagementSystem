@@ -1,11 +1,14 @@
 package edu.fjnu.mcs.cs2.orms.entity;
 
+import edu.fjnu.mcs.cs2.orms.type.Category;
+import edu.fjnu.mcs.cs2.orms.type.Unit;
+
 public class Res {
     private Integer id;
 
-    private Integer categoryId;
+    private Category category;
 
-    private Integer unitId;
+    private Unit unit;
 
     private String name;
 
@@ -27,23 +30,23 @@ public class Res {
         this.id = id;
     }
 
-    public Integer getCategoryId() {
-        return categoryId;
-    }
+    public Category getCategory() {
+		return category;
+	}
 
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
-    }
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 
-    public Integer getUnitId() {
-        return unitId;
-    }
+	public Unit getUnit() {
+		return unit;
+	}
 
-    public void setUnitId(Integer unitId) {
-        this.unitId = unitId;
-    }
+	public void setUnit(Unit unit) {
+		this.unit = unit;
+	}
 
-    public String getName() {
+	public String getName() {
         return name;
     }
 

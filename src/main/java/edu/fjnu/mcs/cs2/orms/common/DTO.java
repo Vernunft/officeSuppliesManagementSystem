@@ -7,9 +7,12 @@ import org.springframework.context.annotation.Primary;
 
 import edu.fjnu.mcs.cs2.orms.entity.Instock;
 import edu.fjnu.mcs.cs2.orms.entity.Outstock;
+import edu.fjnu.mcs.cs2.orms.entity.Supplier;
+import edu.fjnu.mcs.cs2.orms.entity.SupplierSupplies;
 import edu.fjnu.mcs.cs2.orms.type.Category;
 import edu.fjnu.mcs.cs2.orms.type.InstockType;
 import edu.fjnu.mcs.cs2.orms.type.OutstockType;
+import edu.fjnu.mcs.cs2.orms.type.SupplierType;
 
 /**
  * 
@@ -29,7 +32,28 @@ public class DTO {
 	private Instock instock;
 	private Outstock outstock;
 	private OutstockType outstockType;
+	private SupplierType supplierType;
+	private Supplier supplier;
+	private SupplierSupplies supplierSupplies;
 	
+	public SupplierSupplies getSupplierSupplies() {
+		return supplierSupplies;
+	}
+	public void setSupplierSupplies(SupplierSupplies supplierSupplies) {
+		this.supplierSupplies = supplierSupplies;
+	}
+	public Supplier getSupplier() {
+		return supplier;
+	}
+	public void setSupplier(Supplier supplier) {
+		this.supplier = supplier;
+	}
+	public SupplierType getSupplierType() {
+		return supplierType;
+	}
+	public void setSupplierType(SupplierType supplierType) {
+		this.supplierType = supplierType;
+	}
 	public Outstock getOutstock() {
 		return outstock;
 	}

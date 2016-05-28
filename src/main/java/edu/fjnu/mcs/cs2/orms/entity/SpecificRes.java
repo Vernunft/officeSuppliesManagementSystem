@@ -1,13 +1,13 @@
 package edu.fjnu.mcs.cs2.orms.entity;
 
-import edu.fjnu.mcs.cs2.orms.type.ResStatus;
+import edu.fjnu.mcs.cs2.orms.type.Status;
 
 public class SpecificRes {
     private Integer id;
 
     private Res res;
 
-    private ResStatus type;
+    private Status type;
    
     private Float buyPrice;
 
@@ -28,11 +28,11 @@ public class SpecificRes {
 		this.res = res;
 	}
 
-	public ResStatus getType() {
+	public Status getType() {
 		return type;
 	}
 
-	public void setType(ResStatus type) {
+	public void setType(Status type) {
 		this.type = type;
 	}
 

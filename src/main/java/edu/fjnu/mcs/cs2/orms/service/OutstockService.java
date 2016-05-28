@@ -16,14 +16,16 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 import edu.fjnu.mcs.cs2.orms.common.DTO;
 import edu.fjnu.mcs.cs2.orms.dao.EmployeeDao;
-import edu.fjnu.mcs.cs2.orms.dao.InoutstockResListDao;
+import edu.fjnu.mcs.cs2.orms.dao.InstockSpecificResDao;
 import edu.fjnu.mcs.cs2.orms.dao.OutstockDao;
+import edu.fjnu.mcs.cs2.orms.dao.OutstockSpecificResDao;
 import edu.fjnu.mcs.cs2.orms.dao.SpecificResDao;
 import edu.fjnu.mcs.cs2.orms.dao.TypeDao;
 import edu.fjnu.mcs.cs2.orms.entity.Employee;
-import edu.fjnu.mcs.cs2.orms.entity.InoutstockResList;
+import edu.fjnu.mcs.cs2.orms.entity.InstockSpecificRes;
 import edu.fjnu.mcs.cs2.orms.entity.Instock;
 import edu.fjnu.mcs.cs2.orms.entity.Outstock;
+import edu.fjnu.mcs.cs2.orms.entity.OutstockSpecificRes;
 import edu.fjnu.mcs.cs2.orms.entity.SpecificRes;
 import edu.fjnu.mcs.cs2.orms.entity.Supplier;
 import edu.fjnu.mcs.cs2.orms.type.Department;
@@ -51,10 +53,13 @@ public class OutstockService {
 	SpecificResDao specificResDao;
 	
 	@Resource
-	InoutstockResListDao inoutstockResListDao;
+	InstockSpecificResDao inoutstockResListDao;
 	
 	@Resource
 	EmployeeDao employeeDao;
+	
+	@Resource
+	OutstockSpecificResDao outstockSpecificResDao;
 	
 	Map<String, Object> map;
 	
@@ -122,14 +127,14 @@ public class OutstockService {
 	 */
 	public Map<String, Object> addOutstock(DTO data) {
 		Outstock outstock = data.getOutstock();
-		InoutstockResList inoutstockResList = new InoutstockResList();
-		inoutstockResList.setOutstock(outstock);
+		OutstockSpecificRes outstockSpecificRes = new OutstockSpecificRes();
+		outstockSpecificRes.setOutstock(outstock);
 		outstockDao.insertOutstock(outstock);
 		List<SpecificRes> specificRess = outstock.getSpecificReses();
 		for (SpecificRes specificRes : specificRess) {
 			specificResDao.updateSpecificRes(specificRes);
-			inoutstockResList.setSpecificRes(specificRes);
-			inoutstockResListDao.updateRecord(inoutstockResList);
+			outstockSpecificRes.setSpecificRes(specificRes);
+			outstockSpecificResDao.insertOutRecord(outstockSpecificRes);
 		}
 		map.put("code", 0);
 		return map;
@@ -170,12 +175,12 @@ public class OutstockService {
 		}else if (outstock.getEmployee().getId()!=null) {
 			query.remove("typeId");
 			query.put("id", outstock.getEmployee().getId());
-			outstocks=  outstockDao.getInstockInfoByReEmId(query);
+			outstocks=  outstockDao.getOutstockInfoByReEmId(query);
 		}else if (outstock.getEmployee().getName()!=null) {
 			Employee reciEmp= employeeDao.getEmplInfoByName(outstock.getEmployee().getName());
 			query.remove("id");
 			query.put("id", reciEmp.getId());
-			outstocks = outstockDao.getInstockInfoByReEmId(query);
+			outstocks = outstockDao.getOutstockInfoByReEmId(query);
 		}else if (outstock.getDepartment().getId()!=null) {
 			query.remove("id");
 			query.put("id", outstock.getDepartment().getId());
@@ -203,8 +208,8 @@ public class OutstockService {
 			List<SpecificRes> specificRes = outstock.getSpecificReses();
 			for (SpecificRes specificRes2 : specificRes) {
 				if (specificRes2.getId()!=null) {
-					InoutstockResList inoutstockResList =inoutstockResListDao.getListById(specificRes2.getId());
-					outstocks= (List<Outstock>) outstockDao.getOutstockInfoById(inoutstockResList.getOutstock().getId());
+					OutstockSpecificRes outstockSpecificRes =outstockSpecificResDao.getRecordBySpeId(specificRes2.getId());
+					outstocks= (List<Outstock>) outstockDao.getOutstockInfoById(outstockSpecificRes.getOutstock().getId());
 				}
 			}
 		}else if (map!=null) {
@@ -215,14 +220,14 @@ public class OutstockService {
 			query.remove("id");
 			query.remove("typeId");
 			query.remove("name");
-			outstocks = outstockDao.getInstockInfo(query);
+			outstocks = outstockDao.getOutstockInfo(query);
 			
 		}
 		for (Outstock outstock2 : outstocks) {
-			List<InoutstockResList> inoutstockResList =inoutstockResListDao.getListByOutstockId(outstock2.getId());
+			List<OutstockSpecificRes> outstockSpecificRes =outstockSpecificResDao.getListByOutstockId(outstock2.getId());
 			List<SpecificRes> specificReses =null;
-			for (InoutstockResList inoutstockResList2 : inoutstockResList) {
-				SpecificRes specificRes = inoutstockResList2.getSpecificRes();
+			for (OutstockSpecificRes outstockSpecificRes2 : outstockSpecificRes) {
+				SpecificRes specificRes = outstockSpecificRes2.getSpecificRes();
 						///specificResDao.getSpecificResById(inoutstockResList2.getResId());
 				specificReses.add(specificRes);
 			}

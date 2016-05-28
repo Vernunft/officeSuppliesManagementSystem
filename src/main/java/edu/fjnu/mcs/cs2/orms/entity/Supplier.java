@@ -1,9 +1,13 @@
 package edu.fjnu.mcs.cs2.orms.entity;
 
+import java.util.List;
+
+import edu.fjnu.mcs.cs2.orms.type.SupplierType;
+
 public class Supplier {
     private Integer id;
 
-    private Integer typeId;
+    private SupplierType type;
 
     private String name;
 
@@ -22,21 +26,23 @@ public class Supplier {
     private String address;
 
     private String remark;
+    
+    private List<Res> reses;
+    
+    public List<Res> getReses() {
+		return reses;
+	}
 
-    public Integer getId() {
+	public void setReses(List<Res> reses) {
+		this.reses = reses;
+	}
+
+	public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getTypeId() {
-        return typeId;
-    }
-
-    public void setTypeId(Integer typeId) {
-        this.typeId = typeId;
     }
 
     public String getName() {
@@ -110,4 +116,14 @@ public class Supplier {
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
     }
+
+	public SupplierType getType() {
+		return type;
+	}
+
+	public void setType(SupplierType type) {
+		this.type = type;
+	}
+    
+    
 }

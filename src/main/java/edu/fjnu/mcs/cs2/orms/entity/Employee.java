@@ -1,13 +1,17 @@
 package edu.fjnu.mcs.cs2.orms.entity;
 
+import edu.fjnu.mcs.cs2.orms.type.Department;
+import edu.fjnu.mcs.cs2.orms.type.Education;
+import edu.fjnu.mcs.cs2.orms.type.WorkStatus;
+
 public class Employee {
     private Integer id;
 
-    private Integer workStatusId;
+    private WorkStatus workStatus;
 
-    private Integer departmentId;
+    private Department department;
 
-    private Integer educationId;
+    private Education education;
 
     private String name;
 
@@ -25,9 +29,9 @@ public class Employee {
 
     private String address;
 
-    private String graduateSchool;
+    private String graduated;
 
-    private String reserve;
+    private String remark;
 
     public Integer getId() {
         return id;
@@ -37,29 +41,6 @@ public class Employee {
         this.id = id;
     }
 
-    public Integer getWorkStatusId() {
-        return workStatusId;
-    }
-
-    public void setWorkStatusId(Integer workStatusId) {
-        this.workStatusId = workStatusId;
-    }
-
-    public Integer getDepartmentId() {
-        return departmentId;
-    }
-
-    public void setDepartmentId(Integer departmentId) {
-        this.departmentId = departmentId;
-    }
-
-    public Integer getEducationId() {
-        return educationId;
-    }
-
-    public void setEducationId(Integer educationId) {
-        this.educationId = educationId;
-    }
 
     public String getName() {
         return name;
@@ -125,19 +106,44 @@ public class Employee {
         this.address = address == null ? null : address.trim();
     }
 
-    public String getGraduateSchool() {
-        return graduateSchool;
+    public String getGraduated() {
+        return graduated;
     }
 
-    public void setGraduateSchool(String graduateSchool) {
-        this.graduateSchool = graduateSchool == null ? null : graduateSchool.trim();
+    public void setGraduated(String graduated) {
+        this.graduated = graduated == null ? null : graduated.trim();
     }
 
-    public String getReserve() {
-        return reserve;
+    public String getRemark() {
+        return remark;
     }
 
-    public void setReserve(String reserve) {
-        this.reserve = reserve == null ? null : reserve.trim();
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
     }
+
+	public WorkStatus getWorkStatus() {
+		return workStatus;
+	}
+
+	public void setWorkStatus(WorkStatus workStatus) {
+		this.workStatus = workStatus;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+	public Education getEducation() {
+		return education;
+	}
+
+	public void setEducation(Education education) {
+		this.education = education;
+	}
+
 }

@@ -17,13 +17,13 @@ import com.sun.mail.imap.protocol.MailboxInfo;
 
 import edu.fjnu.mcs.cs2.orms.common.DTO;
 import edu.fjnu.mcs.cs2.orms.dao.EmployeeDao;
-import edu.fjnu.mcs.cs2.orms.dao.InoutstockResListDao;
+import edu.fjnu.mcs.cs2.orms.dao.InstockSpecificResDao;
 import edu.fjnu.mcs.cs2.orms.dao.InstockDao;
 import edu.fjnu.mcs.cs2.orms.dao.SpecificResDao;
 import edu.fjnu.mcs.cs2.orms.dao.SupplierDao;
 import edu.fjnu.mcs.cs2.orms.dao.TypeDao;
 import edu.fjnu.mcs.cs2.orms.entity.Employee;
-import edu.fjnu.mcs.cs2.orms.entity.InoutstockResList;
+import edu.fjnu.mcs.cs2.orms.entity.InstockSpecificRes;
 import edu.fjnu.mcs.cs2.orms.entity.Instock;
 import edu.fjnu.mcs.cs2.orms.entity.SpecificRes;
 import edu.fjnu.mcs.cs2.orms.entity.Supplier;
@@ -58,7 +58,7 @@ public class InstockService {
 	EmployeeDao employeeDao;
 	
 	@Resource
-	InoutstockResListDao inoutstockResListDao;
+	InstockSpecificResDao inoutstockResListDao;
 	/**
 	 * 
 	 * @Title: addInstockType 
@@ -69,7 +69,7 @@ public class InstockService {
 	 * @throws
 	 */
 	public Map<String, Object> addInstockType(DTO data) {
-		if (typeDao.insertInstockType(data.getInstockType())==1){
+		if (typeDao.insertInstockType(data.getInstockType())!=0){
 			map.put("code", 0);
 		}else {
 			map.put("code", 101);
@@ -88,7 +88,7 @@ public class InstockService {
 	 */
 	public Map<String, Object> deleteInstockType(DTO data) {
 		InstockType instockType = data.getInstockType();
-		if (typeDao.deleteCategory(instockType.getId())==1) {
+		if (typeDao.deleteCategory(instockType.getId())!=0) {
 			map.put("code", 0);
 		}else {
 			map.put("code", 101);
@@ -123,7 +123,7 @@ public class InstockService {
 	//@Transactional(propagation=Propagation.REQUIRED)
 	public Map<String, Object> addInstock(DTO data) {
 		Instock instock = data.getInstock();
-		InoutstockResList inoutstockResList = new InoutstockResList();
+		InstockSpecificRes inoutstockResList = new InstockSpecificRes();
 		inoutstockResList.setInstock(instock);
 		instockDao.insertInstock(instock);
 		List<SpecificRes> specificRess = instock.getSpecificRes();
@@ -158,7 +158,7 @@ public class InstockService {
 		query.put("size", size);
 		if (instock.getType().getId()!=null) {
 			query.put("typeId", instock.getType().getId());
-			instocks=(List<Instock>) instockDao.getInstockInfoByTypeId(query);
+			instocks=instockDao.getInstockInfoByTypeId(query);
 		}else if (instock.getSupplier().getId()!=null) {
 			query.put("suppllierId", instock.getSupplier().getId());
 			instocks=  instockDao.getInstockInfoBySupId(query);
@@ -187,7 +187,7 @@ public class InstockService {
 			List<SpecificRes> specificRes = instock.getSpecificRes();
 			for (SpecificRes specificRes2 : specificRes) {
 				if (specificRes2.getId()!=null) {
-					InoutstockResList inoutstockResList =inoutstockResListDao.getListById(specificRes2.getId());
+					InstockSpecificRes inoutstockResList =inoutstockResListDao.getListById(specificRes2.getId());
 					instocks=instockDao.getInstockInfoById(inoutstockResList.getInstock().getId()) ;
 				}
 			}
@@ -205,9 +205,9 @@ public class InstockService {
 			instocks = instockDao.getInstockInfo(query);
 		}
 		for (Instock instock2 : instocks) {
-			List<InoutstockResList> inoutstockResList =inoutstockResListDao.getListByInstockId(instock2.getId());
+			List<InstockSpecificRes> inoutstockResList =inoutstockResListDao.getListByInstockId(instock2.getId());
 			List<SpecificRes> specificReses =null;
-			for (InoutstockResList inoutstockResList2 : inoutstockResList) {
+			for (InstockSpecificRes inoutstockResList2 : inoutstockResList) {
 				SpecificRes specificRes = inoutstockResList2.getSpecificRes();
 						///specificResDao.getSpecificResById(inoutstockResList2.getResId());
 				specificReses.add(specificRes);

@@ -63,13 +63,13 @@ public interface OutstockDao {
 	@Results({
 		@Result(property = "make", column = "make_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ),
 		@Result(property = "reciDept", column = "recipient_department_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.getEmpInfoById") ),
-		@Result(property = "type", column = "type_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.geInstockTypeById") ),
+		@Result(property = "type", column = "type_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.getOutstockTypeById") ),
 		@Result(property = "reciEmp", column = "recipient_employee_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ) })
 	List<Outstock> getOutstockInfoByTypeId(Map<String, Object> query);
 
 	/**
 	 * 
-	 * @Title: getInstockInfoByReEmId 
+	 * @Title: getOutstockInfoByReEmId 
 	 * @Description: TODO(根据领用人id查询出库信息) 
 	 * @param @param query
 	 * @param @return    设定文件 
@@ -80,9 +80,9 @@ public interface OutstockDao {
 	@Results({
 		@Result(property = "make", column = "make_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ),
 		@Result(property = "reciDept", column = "recipient_department_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.getEmpInfoById") ),
-		@Result(property = "type", column = "type_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.geInstockTypeById") ),
+		@Result(property = "type", column = "type_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.getOutstockTypeById") ),
 		@Result(property = "reciEmp", column = "recipient_employee_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ) })
-	List<Outstock> getInstockInfoByReEmId(Map<String, Object> query);
+	List<Outstock> getOutstockInfoByReEmId(Map<String, Object> query);
 
 	/**
 	 * 
@@ -97,7 +97,7 @@ public interface OutstockDao {
 	@Results({
 		@Result(property = "make", column = "make_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ),
 		@Result(property = "reciDept", column = "recipient_department_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.getEmpInfoById") ),
-		@Result(property = "type", column = "type_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.geInstockTypeById") ),
+		@Result(property = "type", column = "type_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.getOutstockTypeById") ),
 		@Result(property = "reciEmp", column = "recipient_employee_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ) })
 	List<Outstock> getOutstockInfoByReDeId(Map<String, Object> query);
 	
@@ -114,7 +114,7 @@ public interface OutstockDao {
 	@Results({
 		@Result(property = "make", column = "make_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ),
 		@Result(property = "reciDept", column = "recipient_department_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.getEmpInfoById") ),
-		@Result(property = "type", column = "type_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.geInstockTypeById") ),
+		@Result(property = "type", column = "type_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.getOutstockTypeById") ),
 		@Result(property = "reciEmp", column = "recipient_employee_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ) })
 	List<Outstock> getOutstockInfoByMakeId(Map<String, Object> query);
 
@@ -131,7 +131,7 @@ public interface OutstockDao {
 	@Results({
 		@Result(property = "make", column = "make_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ),
 		@Result(property = "reciDept", column = "recipient_department_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.getEmpInfoById") ),
-		@Result(property = "type", column = "type_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.geInstockTypeById") ),
+		@Result(property = "type", column = "type_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.getOutstockTypeById") ),
 		@Result(property = "reciEmp", column = "recipient_employee_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ) })
 	List<Outstock> getOutstockInfoByTime(Map<String, Object> map);
 
@@ -148,13 +148,13 @@ public interface OutstockDao {
 	@Results({
 		@Result(property = "make", column = "make_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ),
 		@Result(property = "reciDept", column = "recipient_department_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.getEmpInfoById") ),
-		@Result(property = "type", column = "type_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.geInstockTypeById") ),
+		@Result(property = "type", column = "type_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.getOutstockTypeById") ),
 		@Result(property = "reciEmp", column = "recipient_employee_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ) })
 	Outstock getOutstockInfoById(Integer id);
 
 	/**
 	 * 
-	 * @Title: getInstockInfo 
+	 * @Title: getOutstockInfo 
 	 * @Description: TODO(获取所有出库类型信息) 
 	 * @param @param query
 	 * @param @return    设定文件 
@@ -165,7 +165,7 @@ public interface OutstockDao {
 	@Results({
 		@Result(property = "make", column = "make_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ),
 		@Result(property = "reciDept", column = "recipient_department_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.getEmpInfoById") ),
-		@Result(property = "type", column = "type_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.geInstockTypeById") ),
+		@Result(property = "type", column = "type_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.getOutstockTypeById") ),
 		@Result(property = "reciEmp", column = "recipient_employee_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ) })
-	List<Outstock> getInstockInfo(Map<String, Object> query);
+	List<Outstock> getOutstockInfo(Map<String, Object> query);
 }

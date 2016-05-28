@@ -2,10 +2,12 @@ package edu.fjnu.mcs.cs2.orms.common;
 
 import org.apache.ibatis.jdbc.SQL;
 
-import edu.fjnu.mcs.cs2.orms.entity.InoutstockResList;
+import edu.fjnu.mcs.cs2.orms.entity.InstockSpecificRes;
 import edu.fjnu.mcs.cs2.orms.entity.Instock;
 import edu.fjnu.mcs.cs2.orms.entity.Outstock;
 import edu.fjnu.mcs.cs2.orms.entity.SpecificRes;
+import edu.fjnu.mcs.cs2.orms.entity.Supplier;
+import edu.fjnu.mcs.cs2.orms.entity.SupplierSupplies;
 import edu.fjnu.mcs.cs2.orms.entity.Type;
 import edu.fjnu.mcs.cs2.orms.type.InstockType;
 
@@ -42,7 +44,7 @@ public class DynaSqlProvider {
 		return new SQL() {
 			{
 				INSERT_INTO("tbl_instock");
-				if (instock.getAttn()!= null) {
+				if (instock.getAttn() != null) {
 					VALUES("attn_id", "#{attn.id}");
 				}
 				if (instock.getDate() != null) {
@@ -93,31 +95,26 @@ public class DynaSqlProvider {
 			}
 		}.toString();
 	}
-	
-	public String insertInRecord(final InoutstockResList inoutstockResList) {
+
+	public String insertInRecord(final InstockSpecificRes instockSpecificRes) {
 		return new SQL() {
 			{
-				INSERT_INTO("tbl_inoutstock_res_list");
-				if (inoutstockResList.getId()!= null) {
-					VALUES("id", "#{id}");
-				}
-				if (inoutstockResList.getInstock()!= null) {
+				INSERT_INTO("tbl_instock_specific_res");
+				if (instockSpecificRes.getInstock() != null) {
 					VALUES("instock_id", "#{instock.id}");
 				}
-				if (inoutstockResList.getOutstock() != null) {
-					VALUES("outstock_id", "#{outstock.id}");
-				}
-				if (inoutstockResList.getSpecificRes() != null) {
+				if (instockSpecificRes.getSpecificRes() != null) {
 					VALUES("specific_res_id", "#{specificRes.id}");
 				}
 			}
 		}.toString();
 	}
+
 	public String insertOutstock(final Outstock outstock) {
 		return new SQL() {
 			{
 				INSERT_INTO("tbl_outstock");
-				if (outstock.getDepartment()!= null) {
+				if (outstock.getDepartment() != null) {
 					VALUES("recipient_department_id", "#{department.id}");
 				}
 				if (outstock.getDate() != null) {
@@ -148,50 +145,114 @@ public class DynaSqlProvider {
 			}
 		}.toString();
 	}
-	
-	 public String updateSpecificRes(final SpecificRes specificRes)  
-	    {  
-	        return new SQL()  
-	        {  
-	            {  
-	                UPDATE("tbl_specific_res");  
-	                if (specificRes.getBuyPrice() != null)  
-	                {  
-	                    SET("buy_price = #{buyPrice}");  
-	                }  
-	                if (specificRes.getRes() != null)  
-	                {  
-	                    SET("res_id = #{res.id}");  
-	                }  
-	                if (specificRes.getType() != null)  
-	                {  
-	                    SET("type_id = #{type.id}");  
-	                }  
-	                WHERE("id = #{id}");  
-	            }  
-	        } .toString();  
-	    }  
-	 
-	 public String updateRecord(final InoutstockResList inoutstockResList)  
-	    {  
-	        return new SQL()  
-	        {  
-	            {  
-	                UPDATE("tbl_inoutstock_res_list");  
-	                if (inoutstockResList.getInstock() != null)  
-	                {  
-	                    SET("instock_id = #{instock.id}");  
-	                }  
-	                if (inoutstockResList.getOutstock() != null)  
-	                {  
-	                    SET("outstock_id = #{outstock.id}");  
-	                }  
-	                if (inoutstockResList.getSpecificRes() != null)  
-	                {  
-	                    SET("specific_res_id = #{specificRes.id}");  
-	                }  
-	                WHERE("id = #{id}");  
-	            }  
-	        } .toString();  
-	    }  
+
+	public String insertSupplier(final Supplier supplier) {
+		return new SQL() {
+			{
+				INSERT_INTO("tbl_supplier");
+				if (supplier.getAddress() != null) {
+					VALUES("address", "#{address}");
+				}
+				if (supplier.getContactMobile() != null) {
+					VALUES("contact_mobile", "#{ContactMobile}");
+				}
+				if (supplier.getId() != null) {
+					VALUES("id", "#{id}");
+				}
+				if (supplier.getContactName() != null) {
+					VALUES("contact_name", "#{contactName}");
+				}
+				if (supplier.getRemark() != null) {
+					VALUES("remark", "#{remark}");
+				}
+				if (supplier.getContactNumber() != null) {
+					VALUES("contact_number", "#{contactNumber}");
+				}
+				if (supplier.getFax() != null) {
+					VALUES("fax", "#{fax}");
+				}
+				if (supplier.getName() != null) {
+					VALUES("name", "#{name}");
+				}
+				if (supplier.getType() != null) {
+					VALUES("type_id", "#{type.id}");
+				}
+				if (supplier.getPostcode() != null) {
+					VALUES("postcode", "#{postcode}");
+				}
+				if (supplier.getShortName() != null) {
+					VALUES("short_name", "#{shortName}");
+				}
+			}
+		}.toString();
+	}
+
+	public String updateSpecificRes(final SpecificRes specificRes) {
+		return new SQL() {
+			{
+				UPDATE("tbl_specific_res");
+				if (specificRes.getBuyPrice() != null) {
+					SET("buy_price = #{buyPrice}");
+				}
+				if (specificRes.getRes() != null) {
+					SET("res_id = #{res.id}");
+				}
+				if (specificRes.getType() != null) {
+					SET("type_id = #{type.id}");
+				}
+				WHERE("id = #{id}");
+			}
+		}.toString();
+	}
+
+	public String updatePriceById(final SupplierSupplies supplierSupplies) {
+		return new SQL() {
+			{
+				UPDATE("tbl_supplier_supplies");
+				if (supplierSupplies.getPrice() != null) {
+					SET("price = #{price}");
+				}
+				if (supplierSupplies.getRes() != null) {
+					SET("res_id = #{res.id}");
+				}
+				if (supplierSupplies.getRemark() != null) {
+					SET("remark = #{remark}");
+				}
+				if (supplierSupplies.getStatus() != null) {
+					SET("status_id = #{status.id}");
+				}
+				if (supplierSupplies.getSupplier() != null) {
+					SET("supplier_id = #{supplier.id}");
+				}
+				WHERE("id = #{id}");
+			}
+		}.toString();
+	}
+
+	public String insertInfo(final SupplierSupplies supplierSupplies) {
+		return new SQL() {
+			{
+				INSERT_INTO("tbl_supplier_supplies");
+				if (supplierSupplies.getId() != null) {
+					VALUES("id", "#{id}");
+				}
+				if (supplierSupplies.getPrice() != null) {
+					VALUES("price", "#{price}");
+				}
+				if (supplierSupplies.getRemark() != null) {
+					VALUES("remark", "#{remark}");
+				}
+				if (supplierSupplies.getRes() != null) {
+					VALUES("res_id", "#{res.id}");
+				}
+				if (supplierSupplies.getStatus() != null) {
+					VALUES("status_id", "#{status.id}");
+				}
+				if (supplierSupplies.getSupplier() != null) {
+					VALUES("supplier_id", "#{supplier.id}");
+				}
+			}
+		}.toString();
+	}
+
 }
