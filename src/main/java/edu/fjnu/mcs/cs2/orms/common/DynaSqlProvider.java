@@ -3,8 +3,12 @@ package edu.fjnu.mcs.cs2.orms.common;
 import org.apache.ibatis.jdbc.SQL;
 
 import edu.fjnu.mcs.cs2.orms.entity.InstockSpecificRes;
+import edu.fjnu.mcs.cs2.orms.entity.Employee;
 import edu.fjnu.mcs.cs2.orms.entity.Instock;
 import edu.fjnu.mcs.cs2.orms.entity.Outstock;
+import edu.fjnu.mcs.cs2.orms.entity.Purchase;
+import edu.fjnu.mcs.cs2.orms.entity.PurchaseRes;
+import edu.fjnu.mcs.cs2.orms.entity.Res;
 import edu.fjnu.mcs.cs2.orms.entity.SpecificRes;
 import edu.fjnu.mcs.cs2.orms.entity.Supplier;
 import edu.fjnu.mcs.cs2.orms.entity.SupplierSupplies;
@@ -28,7 +32,7 @@ public class DynaSqlProvider {
 					VALUES("NAME", "#{name}");
 				}
 				if (type.getParent() != null) {
-					VALUES("parent", "#{parent}");
+					VALUES("parent", "#{parent.id}");
 				}
 				if (type.getId() != null) {
 					VALUES("id", "#{id}");
@@ -75,6 +79,91 @@ public class DynaSqlProvider {
 			}
 		}.toString();
 	}
+	
+	public String insertRes(final Res res) {
+		return new SQL() {
+			{
+				INSERT_INTO("tbl_res");
+				if (res.getCategory() != null) {
+					VALUES("category_id", "#{category.id}");
+				}
+				if (res.getModel() != null) {
+					VALUES("model", "#{model}");
+				}
+				if (res.getId() != null) {
+					VALUES("id", "#{id}");
+				}
+				if (res.getName() != null) {
+					VALUES("name", "#{name}");
+				}
+				if (res.getRemark() != null) {
+					VALUES("remark", "#{remark}");
+				}
+				if (res.getStockMax() != null) {
+					VALUES("stock_max", "#{stockMax}");
+				}
+				if (res.getStockMin()!= null) {
+					VALUES("stockMin", "#{stockMin}");
+				}
+				if (res.getStockNow()!= null) {
+					VALUES("stockNow", "#{stockNow}");
+				}
+				if (res.getUnit() != null) {
+					VALUES("unit_id", "#{unit.id}");
+				}
+
+			}
+		}.toString();
+	}
+	public String insertEmp(final Employee employee) {
+		return new SQL() {
+			{
+				INSERT_INTO("tbl_employee");
+				if (employee.getDepartment() != null) {
+					VALUES("department_id", "#{department.id}");
+				}
+				if (employee.getSex() != null) {
+					VALUES("sex", "#{sex}");
+				}
+				if (employee.getId() != null) {
+					VALUES("id", "#{id}");
+				}
+				if (employee.getEducation() != null) {
+					VALUES("education_id", "#{education.id}");
+				}
+				if (employee.getRemark() != null) {
+					VALUES("remark", "#{remark}");
+				}
+				if (employee.getWorkStatus() != null) {
+					VALUES("work_status_id", "#{workStatus.id}");
+				}
+				if (employee.getAddress() != null) {
+					VALUES("address", "#{address}");
+				}
+				if (employee.getBirthplace()!= null) {
+					VALUES("birthplace", "#{birthplace}");
+				}
+				if (employee.getContactNumber() != null) {
+					VALUES("contact_number", "#{contactNumber}");
+				}
+				if (employee.getEmail() != null) {
+					VALUES("email", "#{email}");
+				}
+				if (employee.getGraduated() != null) {
+					VALUES("graduated", "#{graduated}");
+				}
+				if (employee.getIdCard() != null) {
+					VALUES("id_card", "#{idCard}");
+				}
+				if (employee.getMobile() != null) {
+					VALUES("mobile", "#{mobile}");
+				}
+				if (employee.getName() != null) {
+					VALUES("name", "#{name}");
+				}
+			}
+		}.toString();
+	}
 
 	public String insertSpecificRes(final SpecificRes specificRes) {
 		return new SQL() {
@@ -95,7 +184,52 @@ public class DynaSqlProvider {
 			}
 		}.toString();
 	}
-
+	
+	public String insertPurchase(final Purchase purchase) {
+		return new SQL() {
+			{
+				INSERT_INTO("tbl_purchase");
+				if (purchase.getComplete() != null) {
+					VALUES("complete", "#{complete}");
+				}
+				if (purchase.getPic() != null) {
+					VALUES("pic_id", "#{pic.id}");
+				}
+				if (purchase.getId() != null) {
+					VALUES("id", "#{id}");
+				}
+				if (purchase.getRemark() != null) {
+					VALUES("remark", "#{remark}");
+				}
+			}
+		}.toString();
+	}
+	public String insertPurRes(final PurchaseRes purchaseRes) {
+		return new SQL() {
+			{
+				INSERT_INTO("tbl_purchase_res");
+				if (purchaseRes.getArrivalCount() != null) {
+					VALUES("arrival_count", "#{arrivalCount}");
+				}
+				if (purchaseRes.getCancelCount() != null) {
+					VALUES("cancel_count", "#{cancelCount}");
+				}
+				if (purchaseRes.getPurchase() != null) {
+					VALUES("purchase_id", "#{purchase.id}");
+				}
+				if (purchaseRes.getRes() != null) {
+					VALUES("res_id", "#{res.id}");
+				}
+				if (purchaseRes.getResCount() != null) {
+					VALUES("res_count", "#{resCount}");
+				}
+				if (purchaseRes.getResPrice() != null) {
+					VALUES("res_price", "#{resPrice}");
+				}
+			}
+		}.toString();
+	}
+	
 	public String insertInRecord(final InstockSpecificRes instockSpecificRes) {
 		return new SQL() {
 			{
@@ -205,6 +339,87 @@ public class DynaSqlProvider {
 		}.toString();
 	}
 
+	public String updateEmployee(final Employee employee) {
+		return new SQL() {
+			{
+				UPDATE("tbl_employee");
+				if (employee.getSex()!= null) {
+					SET("sex = #{sex}");
+				}
+				if (employee.getDepartment() != null) {
+					SET("department_id = #{department.id}");
+				}
+				if (employee.getRemark() != null) {
+					SET("remark = #{remark}");
+				}
+				if (employee.getAddress() != null) {
+					SET("address = #{address}");
+				}
+				if (employee.getBirthplace() != null) {
+					SET("birthplace = #{birthplace}");
+				}
+				if (employee.getContactNumber() != null) {
+					SET("contact_number = #{contactNumber}");
+				}
+				if (employee.getEducation() != null) {
+					SET("education_id= #{education.id}");
+				}
+				if (employee.getEmail() != null) {
+					SET("email = #{email}");
+				}
+				if (employee.getGraduated() != null) {
+					SET("graduated = #{raduated}");
+				}
+				if (employee.getIdCard() != null) {
+					SET("id_card = #{IdCard}");
+				}
+
+				if (employee.getMobile()!= null) {
+					SET("mobile = #{mobile}");
+				}
+				if (employee.getName()!= null) {
+					SET("name = #{name}");
+				}
+				if (employee.getWorkStatus()!= null) {
+					SET("work_status = #{workStatus}");
+				}
+				WHERE("id = #{id}");
+			}
+		}.toString();
+	}
+	
+	public String updateRes(final Res res) {
+		return new SQL() {
+			{
+				UPDATE("tbl_res");
+				if (res.getCategory()!= null) {
+					SET("category_id = #{category.id}");
+				}
+				if (res.getModel() != null) {
+					SET("model = #{model}");
+				}
+				if (res.getRemark() != null) {
+					SET("remark = #{remark}");
+				}
+				if (res.getName() != null) {
+					SET("name = #{name}");
+				}
+				if (res.getStockMax() != null) {
+					SET("stock_max = #{stockMax}");
+				}
+				if (res.getStockMin() != null) {
+					SET("stock_min = #{stockMin}");
+				}
+				if (res.getStockNow() != null) {
+					SET("stock_now= #{stockNow}");
+				}
+				if (res.getUnit() != null) {
+					SET("unit_id = #{unit.id}");
+				}
+				WHERE("id = #{id}");
+			}
+		}.toString();
+	}
 	public String updatePriceById(final SupplierSupplies supplierSupplies) {
 		return new SQL() {
 			{

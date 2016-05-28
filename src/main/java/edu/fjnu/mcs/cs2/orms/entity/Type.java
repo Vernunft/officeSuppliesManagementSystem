@@ -3,7 +3,7 @@ package edu.fjnu.mcs.cs2.orms.entity;
 public class Type {
     private Integer id;
 
-    private Integer parent;
+    private Type parent;
 
     private String name;
 
@@ -17,14 +17,6 @@ public class Type {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getParent() {
-        return parent;
-    }
-
-    public void setParent(Integer parent) {
-        this.parent = parent;
     }
 
 
@@ -44,17 +36,20 @@ public class Type {
         this.remark = remark == null ? null : remark.trim();
     }
 
-	public Type(Integer id, Integer parent, String name, String remark) {
-		super();
-		this.id = id;
-		this.parent = parent;
-		this.name = name;
-		this.remark = remark;
+	public Type getParent() {
+		return parent;
 	}
 
-	public Type() {
-		super();
-		// TODO Auto-generated constructor stub
+	public void setParent(Type parent) {
+		this.parent = parent;
 	}
-    
+
+	public static Integer getType() {
+		return type;
+	}
+
+	public static void setType(Integer type) {
+		Type.type = type;
+	}
+
 }

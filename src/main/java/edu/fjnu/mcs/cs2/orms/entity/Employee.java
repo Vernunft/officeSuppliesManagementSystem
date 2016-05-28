@@ -2,12 +2,12 @@ package edu.fjnu.mcs.cs2.orms.entity;
 
 import edu.fjnu.mcs.cs2.orms.type.Department;
 import edu.fjnu.mcs.cs2.orms.type.Education;
-import edu.fjnu.mcs.cs2.orms.type.WorkStatus;
+import edu.fjnu.mcs.cs2.orms.type.EmpWorkStatus;
 
 public class Employee {
     private Integer id;
 
-    private WorkStatus workStatus;
+    private EmpWorkStatus workStatus;
 
     private Department department;
 
@@ -122,11 +122,11 @@ public class Employee {
         this.remark = remark == null ? null : remark.trim();
     }
 
-	public WorkStatus getWorkStatus() {
+	public EmpWorkStatus getWorkStatus() {
 		return workStatus;
 	}
 
-	public void setWorkStatus(WorkStatus workStatus) {
+	public void setWorkStatus(EmpWorkStatus workStatus) {
 		this.workStatus = workStatus;
 	}
 

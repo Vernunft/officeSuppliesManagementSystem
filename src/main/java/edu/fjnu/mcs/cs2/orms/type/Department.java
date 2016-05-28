@@ -1,5 +1,8 @@
 package edu.fjnu.mcs.cs2.orms.type;
 
+import java.util.List;
+
+import edu.fjnu.mcs.cs2.orms.entity.Employee;
 import edu.fjnu.mcs.cs2.orms.entity.Type;
 
 /**   
@@ -11,5 +14,21 @@ import edu.fjnu.mcs.cs2.orms.entity.Type;
  * @version V1.0   
  */
 public class Department extends Type{
+	private List<Department> child;
 	public static Integer type = 4;
+	private List<Employee> employees ;
+	
+	public List<Employee> getEmployees() {
+		return employees;
+	}
+	public void setEmployees(List<Employee> employees) {
+		this.employees = employees;
+	}
+	public List<Department> getChild() {
+		return child;
+	}
+	public void setChild(List<Department> child) {
+		this.child = child;
+	}
+	
 }

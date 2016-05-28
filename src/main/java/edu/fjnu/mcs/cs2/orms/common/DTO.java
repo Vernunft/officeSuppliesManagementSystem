@@ -5,11 +5,16 @@ import java.util.Map;
 
 import org.springframework.context.annotation.Primary;
 
+import edu.fjnu.mcs.cs2.orms.entity.Employee;
 import edu.fjnu.mcs.cs2.orms.entity.Instock;
 import edu.fjnu.mcs.cs2.orms.entity.Outstock;
+import edu.fjnu.mcs.cs2.orms.entity.Purchase;
+import edu.fjnu.mcs.cs2.orms.entity.Res;
 import edu.fjnu.mcs.cs2.orms.entity.Supplier;
 import edu.fjnu.mcs.cs2.orms.entity.SupplierSupplies;
 import edu.fjnu.mcs.cs2.orms.type.Category;
+import edu.fjnu.mcs.cs2.orms.type.Department;
+import edu.fjnu.mcs.cs2.orms.type.EmpWorkStatus;
 import edu.fjnu.mcs.cs2.orms.type.InstockType;
 import edu.fjnu.mcs.cs2.orms.type.OutstockType;
 import edu.fjnu.mcs.cs2.orms.type.SupplierType;
@@ -35,7 +40,43 @@ public class DTO {
 	private SupplierType supplierType;
 	private Supplier supplier;
 	private SupplierSupplies supplierSupplies;
+	private Department department;
+	private Employee employee;
+	private EmpWorkStatus empWorkStatus;
+	private Res res;
+	private Purchase purchase;
 	
+	
+	public Purchase getPurchase() {
+		return purchase;
+	}
+	public void setPurchase(Purchase purchase) {
+		this.purchase = purchase;
+	}
+	public Res getRes() {
+		return res;
+	}
+	public void setRes(Res res) {
+		this.res = res;
+	}
+	public EmpWorkStatus getEmpWorkStatus() {
+		return empWorkStatus;
+	}
+	public void setEmpWorkStatus(EmpWorkStatus empWorkStatus) {
+		this.empWorkStatus = empWorkStatus;
+	}
+	public Employee getEmployee() {
+		return employee;
+	}
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+	public Department getDepartment() {
+		return department;
+	}
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
 	public SupplierSupplies getSupplierSupplies() {
 		return supplierSupplies;
 	}

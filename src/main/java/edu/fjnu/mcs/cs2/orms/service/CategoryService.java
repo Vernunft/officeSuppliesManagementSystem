@@ -48,12 +48,9 @@ public class CategoryService {
 		query.put("size", size);
 		List<Category> categories = typeDao.getAllCategoryInfo(query);
 		for (Category category : categories) {
-			map.put("id", category.getId());
-			map.put("name", category.getName());
 			category.setChild(typeDao.getChildByParId(category.getId()));
-			map.put("child", category.getChild());
 		}
-		map.put("results", categories);
+		map.put("categorys", categories);
 		map.put("code", 0);
 		map.put("currentPage", currentPage);
 		map.put("size", size);
@@ -78,7 +75,7 @@ public class CategoryService {
 		Category category = data.getCategory();
 		List<Category> categories = null;
 		if (category.getId()!=null) {
-			 categories= (List<Category>) typeDao.getCategoryInfoById(category.getId());
+			 categories= (List<Category>) typeDao.getTypeInfoById(category.getId());
 		}else {
 			Map<String, Object> query = new HashMap<>();
 			query.put("type", Category.type);
@@ -97,9 +94,6 @@ public class CategoryService {
 		 for (Category category2 : categories) {
 				category2.setCount(resDao.getCategotyInfoById(category2.getId()).getStockNow());
 				category2.setChild(typeDao.getChildByParId(category2.getId()));
-				map.put("id", category2.getId());
-				map.put("name", category2.getName());
-				map.put("child", category2.getChild());
 			}
 		 map.put("code", 0);
 		 map.put("categotys", categories);
@@ -117,7 +111,7 @@ public class CategoryService {
 	 */
 	public Map<String, Object> addCategory(DTO data) {
 		Category category = data.getCategory();
-		if (typeDao.insertCategory(category)==1) {
+		if (typeDao.insertCategory(category)!=0) {
 			map.put("code", 0);
 		}else {
 			map.put("code", 101);
@@ -136,7 +130,7 @@ public class CategoryService {
 	 */
 	public Map<String, Object> deleteCategory(DTO data) {
 		Category category = data.getCategory();
-		if (typeDao.deleteCategory(category.getId())==1) {
+		if (typeDao.deleteCategory(category.getId())!=0) {
 			map.put("code", 0);
 		}else {
 			map.put("code", 101);
