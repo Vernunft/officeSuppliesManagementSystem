@@ -124,6 +124,13 @@ public class Supplier {
 	public void setType(SupplierType type) {
 		this.type = type;
 	}
-    
+
+	@Override
+	public String toString() {
+		return "Supplier [id=" + id + ", type=" + type + ", name=" + name + ", shortName=" + shortName
+				+ ", contactName=" + contactName + ", contactMobile=" + contactMobile + ", contactNumber="
+				+ contactNumber + ", fax=" + fax + ", postcode=" + postcode + ", address=" + address + ", remark="
+				+ remark + ", reses=" + reses + "]";
+	}
     
 }

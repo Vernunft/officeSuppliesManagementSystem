@@ -34,7 +34,7 @@ public interface InstockSpecificResDao {
 	 * @return InoutstockResList    返回类型 
 	 * @throws
 	 */
-	@Select("select * from tbl_inoutstock_res_list where specific_res_id=#{id}")
+	@Select("select * from tbl_instock_specific_res where specific_res_id=#{id}")
 	@Results({
 		@Result(property = "specificRes", column = "specific_res_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.SpecificResDao.getSpecificResById") ),
 		@Result(property = "instock", column = "instock_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.InstockDao.getInstockInfoById") )})
@@ -49,7 +49,7 @@ public interface InstockSpecificResDao {
 	 * @return List<InoutstockResList>    返回类型 
 	 * @throws
 	 */
-	@Select("select * from tbl_inoutstock_res_list where instock_id = #{id}")
+	@Select("select * from tbl_instock_specific_res where instock_id = #{id}")
 	@Results({
 		@Result(property = "specificRes", column = "specific_res_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.SpecificResDao.getSpecificResById") ),
 		@Result(property = "instock", column = "instock_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.InstockDao.getInstockInfoById") )})

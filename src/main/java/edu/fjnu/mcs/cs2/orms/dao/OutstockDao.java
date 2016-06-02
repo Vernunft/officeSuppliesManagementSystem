@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.UpdateProvider;
 import org.springframework.stereotype.Repository;
 
 import edu.fjnu.mcs.cs2.orms.common.DynaSqlProvider;
@@ -59,7 +60,7 @@ public interface OutstockDao {
 	 * @return List<Outstock>    返回类型 
 	 * @throws
 	 */
-	@Select("select * from tbl_outstock where type_id=#{typeId} order by id limit ${offset},${size}")
+	@Select("select * from tbl_outstock where type_id=#{typeId} order by date limit ${offset},${size}")
 	@Results({
 		@Result(property = "make", column = "make_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ),
 		@Result(property = "reciDept", column = "recipient_department_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.getEmpInfoById") ),
@@ -161,11 +162,32 @@ public interface OutstockDao {
 	 * @return List<Outstock>    返回类型 
 	 * @throws
 	 */
-	@Select("select * from tbl_outstock order by date  ${offset},${size}")
+	@Select("select * from tbl_outstock order by date limit ${offset},${size}")
 	@Results({
 		@Result(property = "make", column = "make_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ),
-		@Result(property = "reciDept", column = "recipient_department_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.getEmpInfoById") ),
+		@Result(property = "reciDept", column = "recipient_department_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.getDepartmentById") ),
 		@Result(property = "type", column = "type_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.getOutstockTypeById") ),
 		@Result(property = "reciEmp", column = "recipient_employee_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ) })
 	List<Outstock> getOutstockInfo(Map<String, Object> query);
+
+	@UpdateProvider(type=DynaSqlProvider.class,method="updateOutstock")
+	int updateOutstock(Outstock outstock);
+
+	@Select("select count(*) from tbl_outstock where type_id = #{id} ")
+	int getRowCountByTypeId(Integer id);
+
+	@Select("select count(*) from tbl_outstock where recipient_employee_id = #{id} ")
+	int getrowCountByReciEmp(Integer id);
+
+	@Select("select count(*) from tbl_outstock where recipient_department_id = #{id} ")
+	int getRowCountByDeId(Integer id);
+
+	@Select("select count(*) from tbl_outstock where make_id = #{id} ")
+	int getRowCountByMakeId(Integer id);
+	
+	@Select("select count(*) from tbl_outstock where date between #{beginTime} and #{endTime}")
+	int getRowCountByTime(Map<String, Object> map);
+
+	@Select("select count(*) from tbl_outstock")
+	int getAllRowCount(Map<String, Object> query);
 }

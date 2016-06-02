@@ -9,8 +9,75 @@ public class Type {
 
     private String remark;
     
-    public static Integer type = 1 ;
+    public static Integer instockType = 6 ;
+   	
+    public static Integer empWorkStatus = 1 ;
     
+    public static Integer category = 10;
+    
+    public static Integer department = 4;
+    
+    public static Integer outstockType = 7 ;
+    
+    public static Integer supplierType = 3;
+    
+    public static Integer supplierStatus = 9;
+    
+	public static Integer education = 2;
+	
+	public static Integer unit = 5;
+	
+	public static Integer specificResStatus = 8;
+
+   
+    public static Integer getInstockType() {
+		return instockType;
+	}
+
+	public static void setInstockType(Integer instockType) {
+		Type.instockType = instockType;
+	}
+
+	public static Integer getEmpWorkStatus() {
+		return empWorkStatus;
+	}
+
+	public static void setEmpWorkStatus(Integer empWorkStatus) {
+		Type.empWorkStatus = empWorkStatus;
+	}
+
+	public static Integer getCategory() {
+		return category;
+	}
+
+	public static void setCategory(Integer category) {
+		Type.category = category;
+	}
+
+	public static Integer getDepartment() {
+		return department;
+	}
+
+	public static void setDepartment(Integer department) {
+		Type.department = department;
+	}
+
+	public static Integer getOutstockType() {
+		return outstockType;
+	}
+
+	public static void setOutstockType(Integer outstockType) {
+		Type.outstockType = outstockType;
+	}
+
+	public static Integer getSupplierType() {
+		return supplierType;
+	}
+
+	public static void setSupplierType(Integer supplierType) {
+		Type.supplierType = supplierType;
+	}
+
     public Integer getId() {
         return id;
     }
@@ -44,12 +111,10 @@ public class Type {
 		this.parent = parent;
 	}
 
-	public static Integer getType() {
-		return type;
+	@Override
+	public String toString() {
+		return "Type [id=" + id + ", parent=" + parent + ", name=" + name + ", remark=" + remark + "]";
 	}
 
-	public static void setType(Integer type) {
-		Type.type = type;
-	}
 
 }

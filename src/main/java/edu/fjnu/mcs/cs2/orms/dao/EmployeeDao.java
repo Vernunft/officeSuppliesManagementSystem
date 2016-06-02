@@ -20,27 +20,27 @@ public interface EmployeeDao {
 	
 	@Select("select * from tbl_employee where name = #{name}")
 	@Results({
-		@Result(property="department",column="department_id",one=@One(select="edu.fjnu.mcs.cs2.orms.TypeDao.getTypeInfoById")),
-		@Result(property="workStatus",column="work_status_id",one=@One(select="edu.fjnu.mcs.cs2.orms.TypeDao.getTypeInfoById")),
-		@Result(property="education_id",column="education_id",one=@One(select="edu.fjnu.mcs.cs2.orms.TypeDao.getTypeInfoById"))
+		@Result(property="department",column="department_id",one=@One(select="edu.fjnu.mcs.cs2.orms.dao.TypeDao.getDepartmentById")),
+		@Result(property="workStatus",column="work_status_id",one=@One(select="edu.fjnu.mcs.cs2.orms.dao.TypeDao.getEmpWorkStatusById")),
+		@Result(property="education",column="education_id",one=@One(select="edu.fjnu.mcs.cs2.orms.dao.TypeDao.getEducationById"))
 	
 	})
 	public Employee getEmplInfoByName(String name);
 	
 	@Select("select * from tbl_employee where id = #{id}")
 	@Results({
-		@Result(property="department",column="department_id",one=@One(select="edu.fjnu.mcs.cs2.orms.TypeDao.getTypeInfoById")),
-		@Result(property="workStatus",column="work_status_id",one=@One(select="edu.fjnu.mcs.cs2.orms.TypeDao.getTypeInfoById")),
-		@Result(property="education_id",column="education_id",one=@One(select="edu.fjnu.mcs.cs2.orms.TypeDao.getTypeInfoById"))
+		@Result(property="department",column="department_id",one=@One(select="edu.fjnu.mcs.cs2.orms.dao.TypeDao.getDepartmentById")),
+		@Result(property="workStatus",column="work_status_id",one=@One(select="edu.fjnu.mcs.cs2.orms.dao.TypeDao.getEmpWorkStatusById")),
+		@Result(property="education",column="education_id",one=@One(select="edu.fjnu.mcs.cs2.orms.dao.TypeDao.getEducationById"))
 	
 	})
 	public Employee getEmpInfoById(Integer id);
 
 	@Select("select * from tbl_employee where department_id = #{id}")
 	@Results({
-		@Result(property="department",column="department_id",one=@One(select="edu.fjnu.mcs.cs2.orms.TypeDao.getTypeInfoById")),
-		@Result(property="workStatus",column="work_status_id",one=@One(select="edu.fjnu.mcs.cs2.orms.TypeDao.getTypeInfoById")),
-		@Result(property="education_id",column="education_id",one=@One(select="edu.fjnu.mcs.cs2.orms.TypeDao.getTypeInfoById"))
+		@Result(property="department",column="department_id",one=@One(select="edu.fjnu.mcs.cs2.orms.dao.TypeDao.getDepartmentById")),
+		@Result(property="workStatus",column="work_status_id",one=@One(select="edu.fjnu.mcs.cs2.orms.dao.TypeDao.getEmpWorkStatusById")),
+		@Result(property="education",column="education_id",one=@One(select="edu.fjnu.mcs.cs2.orms.dao.TypeDao.getEducationById"))
 	
 	})
 	public List<Employee> getEmpInfoByDId(Integer id);

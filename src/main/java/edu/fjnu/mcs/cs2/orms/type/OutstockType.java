@@ -11,5 +11,5 @@ import edu.fjnu.mcs.cs2.orms.entity.Type;
  * @version V1.0   
  */
 public class OutstockType extends Type{
-	public static Integer type = 9;
+
 }

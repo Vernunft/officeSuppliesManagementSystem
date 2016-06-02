@@ -4,7 +4,12 @@ import edu.fjnu.mcs.cs2.orms.type.Category;
 import edu.fjnu.mcs.cs2.orms.type.Unit;
 
 public class Res {
-    private Integer id;
+    public Res() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	private Integer id;
 
     private Category category;
 
@@ -93,4 +98,26 @@ public class Res {
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Res [id=" + id + ", category=" + category + ", unit=" + unit + ", name=" + name + ", model=" + model
+				+ ", stockMax=" + stockMax + ", stockMin=" + stockMin + ", stockNow=" + stockNow + ", remark=" + remark
+				+ "]";
+	}
+
+	public Res(Integer id, Category category, Unit unit, String name, String model, Integer stockMax, Integer stockMin,
+			Integer stockNow, String remark) {
+		super();
+		this.id = id;
+		this.category = category;
+		this.unit = unit;
+		this.name = name;
+		this.model = model;
+		this.stockMax = stockMax;
+		this.stockMin = stockMin;
+		this.stockNow = stockNow;
+		this.remark = remark;
+	}
+    
 }

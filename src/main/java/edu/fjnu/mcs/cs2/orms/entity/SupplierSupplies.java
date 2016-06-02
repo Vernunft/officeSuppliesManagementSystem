@@ -1,6 +1,6 @@
 package edu.fjnu.mcs.cs2.orms.entity;
 
-import edu.fjnu.mcs.cs2.orms.type.Status;
+import edu.fjnu.mcs.cs2.orms.type.SupplierStatus;
 
 public class SupplierSupplies {
     private Integer id;
@@ -9,7 +9,7 @@ public class SupplierSupplies {
 
     private Res res;
 
-    private Status status;
+    private SupplierStatus status;
 
     private Float price;
 
@@ -48,11 +48,11 @@ public class SupplierSupplies {
 		this.res = res;
 	}
 
-	public Status getStatus() {
+	public SupplierStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(SupplierStatus status) {
 		this.status = status;
 	}
 
@@ -63,4 +63,11 @@ public class SupplierSupplies {
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
     }
+
+	@Override
+	public String toString() {
+		return "SupplierSupplies [id=" + id + ", supplier=" + supplier + ", res=" + res + ", status=" + status
+				+ ", price=" + price + ", remark=" + remark + "]";
+	}
+    
 }

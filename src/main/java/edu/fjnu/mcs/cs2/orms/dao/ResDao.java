@@ -46,7 +46,7 @@ public interface ResDao {
 	@Results({
 		@Result(property = "unit", column = "unit_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.getUnitById") ),
 		@Result(property = "category", column = "category_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.getCategoryInfoById") )})
-	Res getCategotyInfoById(Integer categoryId);
+	List<Res> getResInfoByCatId(Integer categoryId);
 
 	/**
 	 * 

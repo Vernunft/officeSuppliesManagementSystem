@@ -38,20 +38,11 @@ public class CategoryController {
 	 * @param size
 	 * @return
 	 */
-	@RequestMapping("/getAllCategoryInfo")
+	@RequestMapping("/getAllCategory")
 	@ResponseBody
-	public Map<String, Object> getAllCategoryInfo(@RequestBody DTO data)throws Exception {
-		Map<String, Object> map = new HashMap<>();
-		if (data.getCurrentPage()!=null) {
-			if (data.getSize()!=null) {
-				map =categoryService.getAllCategoryInfo(data.getCurrentPage(),data.getSize());
-			}else {
-				map.put("code", 2);
-			}
-		}else {
-			map.put("code", 1);
-		}
-		return map;
+	public Map<String, Object> getAllCategory(@RequestBody DTO data)throws Exception {
+		return categoryService.getAllCategoryInfo(data);
+		
 	}
 	
 	/**

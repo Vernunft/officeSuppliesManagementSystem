@@ -11,6 +11,6 @@ import edu.fjnu.mcs.cs2.orms.entity.Type;
  * @version V1.0   
  */
 public class InstockType extends Type {
-	public static Integer type = 8;
+	//public static Integer instockType = 6;
 		
 }

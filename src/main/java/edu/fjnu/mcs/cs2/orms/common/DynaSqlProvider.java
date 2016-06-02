@@ -13,7 +13,13 @@ import edu.fjnu.mcs.cs2.orms.entity.SpecificRes;
 import edu.fjnu.mcs.cs2.orms.entity.Supplier;
 import edu.fjnu.mcs.cs2.orms.entity.SupplierSupplies;
 import edu.fjnu.mcs.cs2.orms.entity.Type;
+import edu.fjnu.mcs.cs2.orms.type.Category;
+import edu.fjnu.mcs.cs2.orms.type.Department;
+import edu.fjnu.mcs.cs2.orms.type.EmpWorkStatus;
 import edu.fjnu.mcs.cs2.orms.type.InstockType;
+import edu.fjnu.mcs.cs2.orms.type.OutstockType;
+import edu.fjnu.mcs.cs2.orms.type.SupplierType;
+import edu.fjnu.mcs.cs2.orms.type.Unit;
 
 /**
  * @Title: DynaSqlProvider.java
@@ -24,7 +30,7 @@ import edu.fjnu.mcs.cs2.orms.type.InstockType;
  * @version V1.0
  */
 public class DynaSqlProvider {
-	public String insertType(final Type type) {
+	public String insertInstockType(final InstockType type) {
 		return new SQL() {
 			{
 				INSERT_INTO("tbl_all_kind");
@@ -37,19 +43,157 @@ public class DynaSqlProvider {
 				if (type.getId() != null) {
 					VALUES("id", "#{id}");
 				}
-				if (type.type != null) {
-					VALUES("type", "#{type}");
+				if (type.instockType!= null) {
+					VALUES("type", "#{instockType}");
+				}
+				if (type.getRemark()!= null) {
+					VALUES("remark", "#{remark}");
 				}
 			}
 		}.toString();
 	}
-
+	public String insertSupplierType(final SupplierType type) {
+		return new SQL() {
+			{
+				INSERT_INTO("tbl_all_kind");
+				if (type.getName() != null) {
+					VALUES("NAME", "#{name}");
+				}
+				if (type.getParent() != null) {
+					VALUES("parent", "#{parent.id}");
+				}
+				if (type.getId() != null) {
+					VALUES("id", "#{id}");
+				}
+				if (type.supplierType!= null) {
+					VALUES("type", "#{supplierType}");
+				}
+				if (type.getRemark()!= null) {
+					VALUES("remark", "#{remark}");
+				}
+			}
+		}.toString();
+	}
+	public String insertDepartment(final Department type) {
+		return new SQL() {
+			{
+				INSERT_INTO("tbl_all_kind");
+				if (type.getName() != null) {
+					VALUES("NAME", "#{name}");
+				}
+				if (type.getParent() != null) {
+					VALUES("parent", "#{parent.id}");
+				}
+				if (type.getId() != null) {
+					VALUES("id", "#{id}");
+				}
+				if (type.department!= null) {
+					VALUES("type", "#{department}");
+				}
+				if (type.getRemark()!= null) {
+					VALUES("remark", "#{remark}");
+				}
+			}
+		}.toString();
+	}
+	public String insertOutstockType(final OutstockType type) {
+		return new SQL() {
+			{
+				INSERT_INTO("tbl_all_kind");
+				if (type.getName() != null) {
+					VALUES("NAME", "#{name}");
+				}
+				if (type.getParent() != null) {
+					VALUES("parent", "#{parent.id}");
+				}
+				if (type.getId() != null) {
+					VALUES("id", "#{id}");
+				}
+				if (type.outstockType!= null) {
+					VALUES("type", "#{outstockType}");
+				}
+				if (type.getRemark()!= null) {
+					VALUES("remark", "#{remark}");
+				}
+			}
+		}.toString();
+	}
+	public String insertCategory(final Category type) {
+		return new SQL() {
+			{
+				INSERT_INTO("tbl_all_kind");
+				if (type.getName() != null) {
+					VALUES("NAME", "#{name}");
+				}
+				if (type.getParent() != null) {
+					VALUES("parent", "#{parent.id}");
+				}
+				if (type.getId() != null) {
+					VALUES("id", "#{id}");
+				}
+				if (type.category!= null) {
+					VALUES("type", "#{category}");
+				}
+				if (type.getRemark()!= null) {
+					VALUES("remark", "#{remark}");
+				}
+			}
+		}.toString();
+	}
+	
+	public String insertUnit(final Unit type) {
+		return new SQL() {
+			{
+				INSERT_INTO("tbl_all_kind");
+				if (type.getName() != null) {
+					VALUES("NAME", "#{name}");
+				}
+				if (type.getParent() != null) {
+					VALUES("parent", "#{parent.id}");
+				}
+				if (type.getId() != null) {
+					VALUES("id", "#{id}");
+				}
+				if (type.unit!= null) {
+					VALUES("type", "#{unit}");
+				}
+				if (type.getRemark()!= null) {
+					VALUES("remark", "#{remark}");
+				}
+			}
+		}.toString();
+	}
+	public String inertEmpWorkStatus(final EmpWorkStatus type) {
+		return new SQL() {
+			{
+				INSERT_INTO("tbl_all_kind");
+				if (type.getName() != null) {
+					VALUES("NAME", "#{name}");
+				}
+				if (type.getParent() != null) {
+					VALUES("parent", "#{parent.id}");
+				}
+				if (type.getId() != null) {
+					VALUES("id", "#{id}");
+				}
+				if (type.empWorkStatus!= null) {
+					VALUES("type", "#{empWorkStatus}");
+				}
+				if (type.getRemark()!= null) {
+					VALUES("remark", "#{remark}");
+				}
+			}
+		}.toString();
+	}
 	public String insertInstock(final Instock instock) {
 		return new SQL() {
 			{
 				INSERT_INTO("tbl_instock");
 				if (instock.getAttn() != null) {
 					VALUES("attn_id", "#{attn.id}");
+				}
+				if (instock.getPurchase() != null) {
+					VALUES("purchase_id", "#{purchase.id}");
 				}
 				if (instock.getDate() != null) {
 					VALUES("date", "#{date}");
@@ -125,9 +269,12 @@ public class DynaSqlProvider {
 				if (employee.getSex() != null) {
 					VALUES("sex", "#{sex}");
 				}
-				if (employee.getId() != null) {
-					VALUES("id", "#{id}");
-				}
+//				if (employee.getAccount()!= null) {
+//					VALUES("account", "#{account}");
+//				}
+//				if (employee.getPassword()!= null) {
+//				VALUES("password", "#{password}");
+//			}
 				if (employee.getEducation() != null) {
 					VALUES("education_id", "#{education.id}");
 				}
@@ -381,7 +528,7 @@ public class DynaSqlProvider {
 					SET("name = #{name}");
 				}
 				if (employee.getWorkStatus()!= null) {
-					SET("work_status = #{workStatus}");
+					SET("work_status_id = #{workStatus.id}");
 				}
 				WHERE("id = #{id}");
 			}
@@ -415,6 +562,76 @@ public class DynaSqlProvider {
 				}
 				if (res.getUnit() != null) {
 					SET("unit_id = #{unit.id}");
+				}
+				WHERE("id = #{id}");
+			}
+		}.toString();
+	}
+	
+	
+	public String updateInstock(final Instock instock) {
+		return new SQL() {
+			{
+				UPDATE("tbl_instock");
+				if (instock.getAttn()!= null) {
+					SET("attn_id = #{attn.id}");
+				}
+				if (instock.getDate() != null) {
+					SET("date = #{date}");
+				}
+				if (instock.getRemark() != null) {
+					SET("remark = #{remark}");
+				}
+				if (instock.getTotalCount()!= null) {
+					SET("total_count = #{totalCount}");
+				}
+				if (instock.getTotalPrice() != null) {
+					SET("total_price = #{totalPrice}");
+				}
+				if (instock.getMake() != null) {
+					SET("make_id = #{make.id}");
+				}
+				if (instock.getPurchase() != null) {
+					SET("purchase_id= #{purchase.id}");
+				}
+				if (instock.getSupplier()!= null) {
+					SET("suppllier_id = #{supplier.id}");
+				}
+				if (instock.getType()!= null) {
+					SET("type_id = #{type.id}");
+				}
+				WHERE("id = #{id}");
+			}
+		}.toString();
+	}
+	
+	public String updateOutstock(final Outstock outstock) {
+		return new SQL() {
+			{
+				UPDATE("tbl_outstock");
+				if (outstock.getDepartment()!= null) {
+					SET("recipient_department_id = #{department.id}");
+				}
+				if (outstock.getDate() != null) {
+					SET("date = #{date}");
+				}
+				if (outstock.getRemark() != null) {
+					SET("remark = #{remark}");
+				}
+				if (outstock.getTotalCount()!= null) {
+					SET("total_count = #{totalCount}");
+				}
+				if (outstock.getTotalPrice() != null) {
+					SET("total_price = #{totalPrice}");
+				}
+				if (outstock.getMake() != null) {
+					SET("make_id = #{make.id}");
+				}
+				if (outstock.getEmployee() != null) {
+					SET("recipient_employee_id= #{reciEmp.id}");
+				}
+				if (outstock.getType()!= null) {
+					SET("type_id = #{type.id}");
 				}
 				WHERE("id = #{id}");
 			}

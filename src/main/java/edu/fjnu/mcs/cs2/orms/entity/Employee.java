@@ -18,6 +18,10 @@ public class Employee {
     private String idCard;
 
     private String mobile;
+    
+    private String account;
+
+    private String password;
 
     private String contactNumber;
 
@@ -144,6 +148,30 @@ public class Employee {
 
 	public void setEducation(Education education) {
 		this.education = education;
+	}
+
+	public String getAccount() {
+		return account;
+	}
+
+	public void setAccount(String account) {
+		this.account = account;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", workStatus=" + workStatus + ", department=" + department + ", education="
+				+ education + ", name=" + name + ", idCard=" + idCard + ", mobile=" + mobile + ", contactNumber="
+				+ contactNumber + ", email=" + email + ", sex=" + sex + ", birthplace=" + birthplace + ", address="
+				+ address + ", graduated=" + graduated + ", remark=" + remark + "]";
 	}
 
 }

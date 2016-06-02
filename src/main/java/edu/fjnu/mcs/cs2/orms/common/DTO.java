@@ -41,12 +41,26 @@ public class DTO {
 	private Supplier supplier;
 	private SupplierSupplies supplierSupplies;
 	private Department department;
-	private Employee employee;
+	private Employee make;
+	private Employee attn ;
 	private EmpWorkStatus empWorkStatus;
 	private Res res;
 	private Purchase purchase;
+	private Employee employee ;
 	
 	
+	public Employee getEmployee() {
+		return employee;
+	}
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+	public Employee getAttn() {
+		return attn;
+	}
+	public void setAttn(Employee attn) {
+		this.attn = attn;
+	}
 	public Purchase getPurchase() {
 		return purchase;
 	}
@@ -65,11 +79,11 @@ public class DTO {
 	public void setEmpWorkStatus(EmpWorkStatus empWorkStatus) {
 		this.empWorkStatus = empWorkStatus;
 	}
-	public Employee getEmployee() {
-		return employee;
+	public Employee getMake() {
+		return make;
 	}
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setMake(Employee employee) {
+		this.make = employee;
 	}
 	public Department getDepartment() {
 		return department;

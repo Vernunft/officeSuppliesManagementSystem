@@ -10,6 +10,6 @@ import edu.fjnu.mcs.cs2.orms.entity.Type;
  * @date 2016年5月25日 上午12:01:10 
  * @version V1.0   
  */
-public class Status extends Type {
-	public static Integer type = 10;
+public class SupplierStatus extends Type {
+
 }

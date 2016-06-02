@@ -32,7 +32,7 @@
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 		<!-- 这个执行器会批量执行更新语句, 还有SIMPLE 和 REUSE -->
-		<constructor-arg index="1" value="BATCH" /> 
+		<!-- <constructor-arg index="1" value="BATCH" /> -->
 	</bean>
 
 	<!-- 扫描basePackage接口 -->
@@ -40,33 +40,31 @@
 		<!-- 映射器接口文件的包路径， -->
 		<property name="basePackage" value="edu.fjnu.mcs.cs2.orms.dao" />
 	</bean>
+
 	<!-- 使用annotation定义事务 -->
-	<bean id="transactionManager"
+	<bean id="txManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"></property>
+		<property name="dataSource" ref="dataSource" />
 	</bean>
-	<tx:annotation-driven transaction-manager="transactionManager"
-		proxy-target-class="true" />
+
+	<tx:annotation-driven transaction-manager="txManager" />
+	<!-- <aop:aspectj-autoproxy expose-proxy="true" /> -->
 
 	<!-- 通知 -->
-	<!-- <tx:advice id="txAdvice" transaction-manager="transactionManager">
+	<!-- <tx:advice id="txAdvice" transaction-manager="transactionManager"> 
 		<tx:attributes> -->
-			<!-- 传播行为 -->			
-<!-- 			<tx:method name="save*" propagation="REQUIRED" />
-			<tx:method name="delete*" propagation="REQUIRED" />
-			<tx:method name="insert*" propagation="REQUIRED" />
-			<tx:method name="update*" propagation="REQUIRED" />
-			<tx:method name="find*" propagation="SUPPORTS" read-only="true" />
-			<tx:method name="get*" propagation="SUPPORTS" read-only="true" />
-			<tx:method name="select*" propagation="SUPPORTS" read-only="true" />
-		</tx:attributes>
-	</tx:advice> --> 
-	
+
+	<!-- 传播行为 -->
+	<!-- <tx:method name="save*" propagation="REQUIRED" /> <tx:method name="delete*" 
+		propagation="REQUIRED" /> <tx:method name="insert*" propagation="REQUIRED" 
+		/> <tx:method name="update*" propagation="REQUIRED" /> <tx:method name="find*" 
+		propagation="SUPPORTS" read-only="true" /> <tx:method name="get*" propagation="SUPPORTS" 
+		read-only="true" /> <tx:method name="select*" propagation="SUPPORTS" read-only="true" 
+		/> </tx:attributes> </tx:advice> -->
+
 	<!-- aop -->
-<!-- 	<aop:config>
-		<aop:advisor advice-ref="txAdvice"
-			pointcut="execution(* edu.fjnu.mcs.cs2.orms.service.*.*(..))" />
-	</aop:config> -->
+	<!-- <aop:config> <aop:advisor advice-ref="txAdvice" pointcut="execution(* 
+		edu.fjnu.mcs.cs2.orms.service.*.*(..))" /> </aop:config> -->
 
 	<!-- 数据源配置, 使用Tomcat JDBC连接池 -->
 	<bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource"

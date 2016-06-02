@@ -22,4 +22,9 @@ public class InstockSpecificRes {
 		this.instock = instock;
 	}
 
+	@Override
+	public String toString() {
+		return "InstockSpecificRes [specificRes=" + specificRes + ", instock=" + instock + "]";
+	}
+
 }

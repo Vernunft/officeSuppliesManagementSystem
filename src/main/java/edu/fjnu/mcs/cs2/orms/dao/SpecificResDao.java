@@ -3,7 +3,10 @@ package edu.fjnu.mcs.cs2.orms.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.InsertProvider;
+import org.apache.ibatis.annotations.One;
 import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.UpdateProvider;
 import org.springframework.stereotype.Repository;
@@ -44,8 +47,11 @@ public interface SpecificResDao {
 	 * @return SpecificRes    返回类型 
 	 * @throws
 	 */
-	@Select("select * from tbl_specific_res where specific_res_id=#{resId}")
-	SpecificRes getSpecificResById(Integer resId);
+	@Select("select * from tbl_specific_res where id=#{id}")
+	@Results({
+		@Result(property = "type", column = "type_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.getSpecificResStatusById") ),
+		@Result(property = "res", column = "res_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.ResDao.getResById") ) })
+	SpecificRes getSpecificResById(Integer id);
 
 	/**
 	 * 

@@ -20,11 +20,30 @@ public class Instock {
 
 	private String remark;
 
-	private Integer totalCount;
+	private Integer totalCount = 0;
 
-	private Float totalPrice;
+	private Float totalPrice = 0f;
 
 	private List<SpecificRes> specificReses;
+	
+	private Purchase purchase ;
+	
+
+	public List<SpecificRes> getSpecificReses() {
+		return specificReses;
+	}
+
+	public void setSpecificReses(List<SpecificRes> specificReses) {
+		this.specificReses = specificReses;
+	}
+
+	public Purchase getPurchase() {
+		return purchase;
+	}
+
+	public void setPurchase(Purchase purchase) {
+		this.purchase = purchase;
+	}
 
 	public InstockType getType() {
 		return type;
@@ -39,14 +58,6 @@ public class Instock {
 
 	public void setRemark(String remark) {
 		this.remark = remark == null ? null : remark.trim();
-	}
-
-	public List<SpecificRes> getSpecificRes() {
-		return specificReses;
-	}
-
-	public void setSpecificRes(List<SpecificRes> specificRes) {
-		this.specificReses = specificRes;
 	}
 
 	public Integer getTotalCount() {
@@ -106,6 +117,13 @@ public class Instock {
 	}
 
 	public Instock() {
+	}
+
+	@Override
+	public String toString() {
+		return "Instock [id=" + id + ", make=" + make + ", attn=" + attn + ", supplier=" + supplier + ", type=" + type
+				+ ", date=" + date + ", remark=" + remark + ", totalCount=" + totalCount + ", totalPrice=" + totalPrice
+				+ ", specificReses=" + specificReses + ", purchase=" + purchase + "]";
 	}
 
 }

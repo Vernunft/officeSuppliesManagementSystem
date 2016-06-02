@@ -57,19 +57,23 @@ public class TestController {
 //		category.setName("电视");
 //		List<Category> categories =allKindDao.getChildByParId(1);
 //		System.out.print(categories.size());
-//		Instock instock = new Instock();
-//		Type type = new InstockType();
-//		type.setId(1);
-//		type.setName("空调");
-//		instock.setType(type);
-//		instock.setMakeId(1);
-//		instock.setAttnId(1);
-//		instock.setDate(new Date());
-//		instock.setSuppllierId(1);
-//		instock.setTotalCount(12);
-//		instock.setTotalPrice(2.5f);
-//		int flag = instockDao.insertInstock(instock);
-//		System.out.println(flag);
+		Instock instock = new Instock();
+		InstockType type = new InstockType();
+		type.setId(1);
+		//type.setName("空调");
+		instock.setType(type);
+		Employee make  = new Employee();
+		make.setId(14);
+		instock.setMake(make);
+		instock.setAttn(make);
+		instock.setDate(new Date());
+		Supplier supplier = new Supplier();
+		supplier.setId(1);
+		instock.setSupplier(supplier);
+		instock.setTotalCount(12);
+		instock.setTotalPrice(2.5f);
+		int flag = instockDao.insertInstock(instock);
+		System.out.println(flag);
 //		Integer id = allKindDao.getTypeByName(map);
 //		System.out.println(id);.
 		//测试根据时间段查询入库信息
@@ -80,22 +84,24 @@ public class TestController {
 //			System.out.println(instock.getType().getName());
 //		}
 		InstockType instockType = new InstockType();
-		instockType.setName("购入");
-		instockType.setId(1);
-		Instock instock = new Instock();
-		instock.setDate(new Date());
-		instock.setTotalCount(12);
-		instock.setTotalPrice(12f);
-		instock.setType(instockType);
-		Employee employee = employeeDao.getEmpInfoById(1);
-		instock.setAttn(employee);
-		instock.setMake(employee);
-		Supplier supplier = supplierDao.getSupplierById(1);
-		instock.setSupplier(supplier);
-		int flag =0;
-		flag=instockDao.insertInstock(instock);
-		if (flag!=0) {
-			System.out.println(flag);
-		}
+		//instockType.setName("购入");
+		instockType.setId(77);
+//		Instock instock = new Instock();
+//		instock.setDate(new Date());
+//		instock.setTotalCount(12);
+//		instock.setTotalPrice(12f);
+//		instock.setType(instockType);
+//		Employee employee = employeeDao.getEmpInfoById(1);
+//		instock.setAttn(employee);
+//		instock.setMake(employee);
+//		Supplier supplier = supplierDao.getSupplierById(1);
+//		instock.setSupplier(supplier);
+//		int flag =0;
+//		flag=instockDao.insertInstock(instock);
+//		if (flag!=0) {
+//			System.out.println(flag);
+//		}
+//		int flag = allKindDao.deleteCategory(81);
+//		System.out.println(flag);
 	}
 }

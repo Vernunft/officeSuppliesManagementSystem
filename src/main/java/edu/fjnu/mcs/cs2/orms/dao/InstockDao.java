@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.UpdateProvider;
 import org.springframework.stereotype.Repository;
 
 import edu.fjnu.mcs.cs2.orms.common.DynaSqlProvider;
@@ -42,7 +43,7 @@ public interface InstockDao {
 	 *         设定文件 @return Instock 返回类型 @throws
 	 */
 	
-	@Select("select * from tbl_instock where type_id=#{id} order by date  ${offset},${size}")
+	@Select("select * from tbl_instock where type_id=#{typeId} order by date DESC  LIMIT ${offset},${size}")
 	@Results({
 		@Result(property = "make", column = "make_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ),
 		@Result(property = "attn", column = "attn_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ),
@@ -56,12 +57,12 @@ public interface InstockDao {
 	 *         TODO(根据供应商id获取入库信息) @param @param suppllierId @param @return
 	 *         设定文件 @return Instock 返回类型 @throws
 	 */
-	@Select("select * from tbl_instock where suppllier_id=#{suppllierId} order by date  ${offset},${size}")
+	@Select("select * from tbl_instock where suppllier_id=#{suppllierId} order by date DESC  LIMIT ${offset},${size}")
 	@Results({
 		@Result(property = "make", column = "make_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ),
 		@Result(property = "attn", column = "attn_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ),
 		@Result(property = "type", column = "type_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.geInstockTypeById") ),
-		@Result(property = "supplier", column = "supplier_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.SupplierDao.getSupplierById") ) })
+		@Result(property = "supplier", column = "suppllier_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.SupplierDao.getSupplierById") ) })
 	List<Instock> getInstockInfoBySupId(Map<String, Object> query);
 
 	/**
@@ -70,12 +71,12 @@ public interface InstockDao {
 	 *         TODO(根据经办人查询入库信息) @param @param id @param @return 设定文件 @return
 	 *         List<Instock> 返回类型 @throws
 	 */
-	@Select("select * from tbl_instock where attn_id=#{attnId} order by date  ${offset},${size}")
+	@Select("select * from tbl_instock where attn_id=#{attnId} order by date DESC  LIMIT ${offset},${size}")
 	@Results({
 		@Result(property = "make", column = "make_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ),
 		@Result(property = "attn", column = "attn_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ),
 		@Result(property = "type", column = "type_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.geInstockTypeById") ),
-		@Result(property = "supplier", column = "supplier_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.SupplierDao.getSupplierById") ) })
+		@Result(property = "supplier", column = "suppllier_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.SupplierDao.getSupplierById") ) })
 	List<Instock> getInstockInfoByAttnId(Map<String, Object> query);
 
 	/**
@@ -88,8 +89,8 @@ public interface InstockDao {
 			@Result(property = "make", column = "make_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ),
 			@Result(property = "attn", column = "attn_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ),
 			@Result(property = "type", column = "type_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.geInstockTypeById") ),
-			@Result(property = "supplier", column = "supplier_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.SupplierDao.getSupplierById") ) })
-	List<Instock> getInstockInfoById(Integer id);
+			@Result(property = "supplier", column = "suppllier_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.SupplierDao.getSupplierById") ) })
+	Instock getInstockInfoById(Integer id);
 
 	/**
 	 * 
@@ -97,12 +98,12 @@ public interface InstockDao {
 	 *         TODO(根据时间段查询入库信息) @param @param map @param @return 设定文件 @return
 	 *         List<Instock> 返回类型 @throws
 	 */
-	@Select("select * from tbl_instock where date between #{beginTime} and #{endTime} order by date  ${offset},${size}")
+	@Select("select * from tbl_instock where date between #{beginTime} and #{endTime} order by date DESC  LIMIT ${offset},${size}")
 	@Results({
 		@Result(property = "make", column = "make_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ),
 		@Result(property = "attn", column = "attn_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ),
 		@Result(property = "type", column = "type_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.geInstockTypeById") ),
-		@Result(property = "supplier", column = "supplier_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.SupplierDao.getSupplierById") ) })
+		@Result(property = "supplier", column = "suppllier_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.SupplierDao.getSupplierById") ) })
 	List<Instock> getInstockInfoByTime(Map<String, Object> map);
 
 	/**
@@ -110,12 +111,12 @@ public interface InstockDao {
 	 * @Title: getInstockInfo @Description: TODO(获取所有的入库信息) @param @param
 	 *         query @param @return 设定文件 @return List<Instock> 返回类型 @throws
 	 */
-	@Select("select * from tbl_instock order by date  ${offset},${size}")
+	@Select("select * from tbl_instock order by date DESC  LIMIT ${offset},${size}")
 	@Results({
 			@Result(property = "make", column = "make_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ),
 			@Result(property = "attn", column = "attn_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ),
 			@Result(property = "type", column = "type_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.geInstockTypeById") ),
-			@Result(property = "supplier", column = "supplier_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.SupplierDao.getSupplierById") ) })
+			@Result(property = "supplier", column = "suppllier_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.SupplierDao.getSupplierById") ) })
 	List<Instock> getInstockInfo(Map<String, Object> query);
 
 	/**
@@ -127,11 +128,32 @@ public interface InstockDao {
 	 * @return List<Instock>    返回类型 
 	 * @throws
 	 */
-	@Select("select * from tbl_instock where make_id=#{makeId} order by date  ${offset},${size}")
+	@Select("select * from tbl_instock where make_id=#{makeId} order by date DESC  LIMIT ${offset},${size}")
 	@Results({
 		@Result(property = "make", column = "make_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ),
 		@Result(property = "attn", column = "attn_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.EmployeeDao.getEmpInfoById") ),
 		@Result(property = "type", column = "type_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.geInstockTypeById") ),
-		@Result(property = "supplier", column = "supplier_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.SupplierDao.getSupplierById") ) })
+		@Result(property = "supplier", column = "suppllier_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.SupplierDao.getSupplierById") ) })
 	List<Instock> getInstockInfoByMakeId(Map<String, Object> query);
+
+	@UpdateProvider(type = DynaSqlProvider.class, method = "updateInstock")
+	int updateInstock(Instock instock);
+
+	@Select("select count(*) from tbl_instock where type_id=#{id}")
+	int getRowCountByTypeId(Integer id);
+
+	@Select("select count(*) from tbl_instock where suppllier_id=#{id}")
+	int getRowCountBySupId(Integer id);
+
+	@Select("select count(*) from tbl_instock ")
+	int getRowCount();
+
+	@Select("select count(*) from tbl_instock where attn_id=#{id}")
+	int getRowCountByAttId(Integer id);
+
+	@Select("select count(*) from tbl_instock where make_id=#{id}")
+	int getRowCountByMakeId(Integer id);
+
+	@Select("select count(*) from tbl_instock where date between #{beginTime} and #{endTime} ")
+	int getRowCountByTime(Map<String, Object> map);
 }

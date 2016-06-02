@@ -11,7 +11,7 @@ public class Outstock {
 
 	private Employee make;
 	
-	private Department department;
+	private Department reciDept;
 
 	private Employee reciEmp;
 	
@@ -21,9 +21,9 @@ public class Outstock {
 
 	private String remark;
 
-	private Integer totalCount;
+	private Integer totalCount = 0;
 
-	private Float totalPrice;
+	private Float totalPrice = 0f;
 
 	private List<SpecificRes> specificReses;
 	
@@ -44,11 +44,11 @@ public class Outstock {
 	}
 
 	public Department getDepartment() {
-		return department;
+		return reciDept;
 	}
 
 	public void setDepartment(Department department) {
-		this.department = department;
+		this.reciDept = department;
 	}
 
 	public Employee getEmployee() {
@@ -106,4 +106,12 @@ public class Outstock {
 	public void setRemark(String reserve) {
 		this.remark = reserve == null ? null : reserve.trim();
 	}
+
+	@Override
+	public String toString() {
+		return "Outstock [id=" + id + ", make=" + make + ", department=" + reciDept + ", reciEmp=" + reciEmp
+				+ ", type=" + type + ", date=" + date + ", remark=" + remark + ", totalCount=" + totalCount
+				+ ", totalPrice=" + totalPrice + ", specificReses=" + specificReses + "]";
+	}
+	
 }

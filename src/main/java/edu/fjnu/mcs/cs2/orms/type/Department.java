@@ -14,15 +14,15 @@ import edu.fjnu.mcs.cs2.orms.entity.Type;
  * @version V1.0   
  */
 public class Department extends Type{
+	
 	private List<Department> child;
-	public static Integer type = 4;
-	private List<Employee> employees ;
+	private List<Employee> emp ;
 	
 	public List<Employee> getEmployees() {
-		return employees;
+		return emp;
 	}
 	public void setEmployees(List<Employee> employees) {
-		this.employees = employees;
+		this.emp = employees;
 	}
 	public List<Department> getChild() {
 		return child;

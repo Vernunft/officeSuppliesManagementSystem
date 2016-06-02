@@ -12,7 +12,7 @@ import edu.fjnu.mcs.cs2.orms.entity.Type;
  * @date 2016年5月21日 下午3:24:41
  */
 public class Category extends Type {
-	public static Integer type = 12;
+
 	private Integer count; 
 	private List<Category> child;
 	public Integer getCount() {

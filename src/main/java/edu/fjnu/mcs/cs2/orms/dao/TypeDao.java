@@ -17,10 +17,12 @@ import edu.fjnu.mcs.cs2.orms.entity.Supplier;
 import edu.fjnu.mcs.cs2.orms.entity.Type;
 import edu.fjnu.mcs.cs2.orms.type.Category;
 import edu.fjnu.mcs.cs2.orms.type.Department;
+import edu.fjnu.mcs.cs2.orms.type.Education;
 import edu.fjnu.mcs.cs2.orms.type.EmpWorkStatus;
 import edu.fjnu.mcs.cs2.orms.type.InstockType;
 import edu.fjnu.mcs.cs2.orms.type.OutstockType;
-import edu.fjnu.mcs.cs2.orms.type.Status;
+import edu.fjnu.mcs.cs2.orms.type.SpecificResStatus;
+import edu.fjnu.mcs.cs2.orms.type.SupplierStatus;
 import edu.fjnu.mcs.cs2.orms.type.SupplierType;
 import edu.fjnu.mcs.cs2.orms.type.Unit;
 
@@ -60,6 +62,7 @@ public interface TypeDao {
 	@Select("select * from tbl_all_kind where parent=#{typeId}")
 	@Result(property = "parent",column= "parent",one = @One(select="edu.fjnu.mcs.cs2.orms.dao.TypeDao.getTypeInfoById"))
 	List<Department> getChildByDepId(Integer typeId);
+	
 
 	/**
 	 * 待定
@@ -73,7 +76,7 @@ public interface TypeDao {
 	 */
 	@Select("select * from tbl_all_kind where id=#{id}")
 	@Result(property = "parent",column= "parent",one = @One(select="edu.fjnu.mcs.cs2.orms.dao.TypeDao.getTypeInfoById"))
-	Type getTypeInfoById(Integer id);
+	Category getTypeInfoById(Integer id);
 
 	/**
 	 * 
@@ -87,11 +90,15 @@ public interface TypeDao {
 	@Select("select * from tbl_all_kind where type=#{type} limit ${offset},${size}")
 	@Result(property = "parent",column= "parent",one = @One(select="edu.fjnu.mcs.cs2.orms.dao.TypeDao.getTypeInfoById"))
 	List<Category> getCategoryInfo(Map<String, Object> map);
+	
+	@Select("select * from tbl_all_kind where id=#{id}")
+	@Result(property = "parent",column= "parent",one = @One(select="edu.fjnu.mcs.cs2.orms.dao.TypeDao.getTypeInfoById"))
+	Category getCategoryInfoById(Integer id);
 
 	/**
 	 * 
 	 * @Title: getRowCountByType 
-	 * @Description: TODO(查询物品类别的记录数) 
+	 * @Description: TODO(查询类别的记录数) 
 	 * @param @param type
 	 * @param @return    设定文件 
 	 * @return int    返回类型 
@@ -110,7 +117,7 @@ public interface TypeDao {
 	 * @throws
 	 */
 	@InsertProvider(type = DynaSqlProvider.class,  
-            method = "insertType")  
+            method = "insertInstockType")  
 	@Options(useGeneratedKeys = true, keyProperty = "id") 
 	int insertInstockType(InstockType type);
 
@@ -228,7 +235,16 @@ public interface TypeDao {
 	 */
 	@Select("select * from tbl_all_kind where id=#{id}")
 	@Result(property = "parent",column= "parent",one = @One(select="edu.fjnu.mcs.cs2.orms.dao.TypeDao.getTypeInfoById"))
-	Status getStatusById(Integer id);
+	SupplierStatus getStatusById(Integer id);
+	
+	@Select("select * from tbl_all_kind where id=#{id}")
+	@Result(property = "parent",column= "parent",one = @One(select="edu.fjnu.mcs.cs2.orms.dao.TypeDao.getTypeInfoById"))
+	Education getEducationById(Integer id);
+	
+	@Select("select * from tbl_all_kind where id=#{id}")
+	@Result(property = "parent",column= "parent",one = @One(select="edu.fjnu.mcs.cs2.orms.dao.TypeDao.getTypeInfoById"))
+	EmpWorkStatus getEmpWorkStatusById(Integer id);
+	
 
 	/**
 	 * 
@@ -240,7 +256,7 @@ public interface TypeDao {
 	 * @throws
 	 */
 	@InsertProvider(type = DynaSqlProvider.class,  
-            method = "insertType")  
+            method = "insertCategory")  
 	@Options(useGeneratedKeys = true, keyProperty = "id") 
 	int insertCategory(Category category);
 
@@ -254,7 +270,7 @@ public interface TypeDao {
 	 * @throws
 	 */
 	@InsertProvider(type = DynaSqlProvider.class,  
-            method = "insertType")  
+            method = "insertOutstockType")  
 	@Options(useGeneratedKeys = true, keyProperty = "id") 
 	int insertOutstockType(OutstockType outstockType);
 
@@ -268,7 +284,7 @@ public interface TypeDao {
 	 * @throws
 	 */
 	@InsertProvider(type = DynaSqlProvider.class,  
-            method = "insertType")  
+            method = "insertSupplierType")  
 	@Options(useGeneratedKeys = true, keyProperty = "id")
 	int insertSupplierType(SupplierType supplierType);
 
@@ -290,7 +306,7 @@ public interface TypeDao {
 	Department getDepartmentByName(String name);
 
 	@InsertProvider(type = DynaSqlProvider.class,  
-            method = "insertType")  
+            method = "insertDepartment")  
 	@Options(useGeneratedKeys = true, keyProperty = "id")
 	int insertDepartment(Department department);
 
@@ -307,16 +323,51 @@ public interface TypeDao {
 	@Result(property = "parent",column= "parent",one = @One(select="edu.fjnu.mcs.cs2.orms.dao.TypeDao.getTypeInfoById"))
 	List<Department> getDepartmentByType(Integer type);
 	
+	@Select("select * from tbl_all_kind where id= #{id}")
+	@Result(property = "parent",column= "parent",one = @One(select="edu.fjnu.mcs.cs2.orms.dao.TypeDao.getDepartmentById"))
+	Department getDepartmentById(Integer id);
+	
+	@Select("select * from tbl_all_kind where id= #{id}")
+	@Result(property = "parent",column= "parent",one = @One(select="edu.fjnu.mcs.cs2.orms.dao.TypeDao.getSpecificResStatusById"))
+	SpecificResStatus getSpecificResStatusById(Integer id);
+	
 	@Select("select * from tbl_all_kind where type=#{type} order by id limit ${offset},${size}")
 	@Result(property = "parent",column= "parent",one = @One(select="edu.fjnu.mcs.cs2.orms.dao.TypeDao.getTypeInfoById"))
-	List<Department> getDepartmentByType(Map<String, Object> query);
+	List<Department> getDepartmentByTypePage(Map<String, Object> query);
 
 	@InsertProvider(type = DynaSqlProvider.class,  
-            method = "insertType")  
+            method = "inertEmpWorkStatus")  
 	@Options(useGeneratedKeys = true, keyProperty = "id")
 	int inertEmpWorkStatus(EmpWorkStatus empWorkStatus);
 
 	@Select("select * from tbl_all_kind where type=#{type}")
 	@Result(property = "parent",column= "parent",one = @One(select="edu.fjnu.mcs.cs2.orms.dao.TypeDao.getTypeInfoById"))
 	List<EmpWorkStatus> getWorkStatus(Integer type);
+
+	@Select("select * from tbl_all_kind where name=#{name}")
+	@Result(property = "parent",column= "parent",one = @One(select="edu.fjnu.mcs.cs2.orms.dao.TypeDao.getTypeInfoById"))
+	InstockType getInstockTypeByName(String name);
+
+	@Select("select * from tbl_all_kind where name=#{name}")
+	@Result(property = "parent",column= "parent",one = @One(select="edu.fjnu.mcs.cs2.orms.dao.TypeDao.getTypeInfoById"))
+	Category getCategoryByName(String name);
+
+	@Select("select * from tbl_all_kind where name=#{name}")
+	@Result(property = "parent",column= "parent",one = @One(select="edu.fjnu.mcs.cs2.orms.dao.TypeDao.getTypeInfoById"))
+	OutstockType getOutstockTypeByName(String name);
+
+	@Select("select * from tbl_all_kind where name=#{name}")
+	@Result(property = "parent",column= "parent",one = @One(select="edu.fjnu.mcs.cs2.orms.dao.TypeDao.getTypeInfoById"))
+	Supplier getSUpplierTypeByName(String name);
+
+	@Select("select * from tbl_all_kind where name=#{name}")
+	EmpWorkStatus getEmpWorkStatusByName(String name);
+
+	@Select("select * from tbl_all_kind where name=#{name}")
+	Unit getUnitByName(String name);
+
+	@InsertProvider(type = DynaSqlProvider.class,  
+            method = "insertUnit")  
+	@Options(useGeneratedKeys = true, keyProperty = "id") 
+	int insertUnit(Unit unit);
 }

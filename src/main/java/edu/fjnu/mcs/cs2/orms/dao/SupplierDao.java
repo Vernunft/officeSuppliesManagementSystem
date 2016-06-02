@@ -101,9 +101,9 @@ public interface SupplierDao {
 	 * @return List<Supplier>    返回类型 
 	 * @throws
 	 */
-	@Select("select * from tbl_supplier where contact_name=#{contactName}")
+	@Select("select * from tbl_supplier where contact_name=#{contactName} order by id limit ${offset},${size}")
 	@Result(property = "type", column = "type_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.getSupplierTypeById") )
-	List<Supplier> getSupByConName(String contactName);
+	List<Supplier> getSupByConName(Map<String, Object> query);
 
 	/**
 	 * 
@@ -142,7 +142,7 @@ public interface SupplierDao {
 	 */
 	@Select("select * from tbl_supplier where fax=#{fax}")
 	@Result(property = "type", column = "type_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.getSupplierTypeById") )
-	List<Supplier> getSupByFax(String fax);
+	Supplier getSupByFax(String fax);
 
 	/**
 	 * 
@@ -159,7 +159,7 @@ public interface SupplierDao {
 
 	@Select("select * from tbl_supplier where address=#{address}")
 	@Result(property = "type", column = "type_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.getSupplierTypeById") )
-	List<Supplier> getSupByAdd(String address);
+	Supplier getSupByAdd(String address);
 
 	/**
 	 * 
@@ -173,4 +173,16 @@ public interface SupplierDao {
 	@Select("select * from tbl_supplier order by id limit ${offset},${size}")
 	@Result(property = "type", column = "type_id", one = @One(select = "edu.fjnu.mcs.cs2.orms.dao.TypeDao.getSupplierTypeById") )
 	List<Supplier> getSupplier(Map<String, Object> query);
+
+	@Select("select count(*) from tbl_supplier where type_id = #{id}")
+	int getRowCountByTypeId(Integer id);
+	
+	@Select("select count(*) from tbl_supplier where contact_name = #{contactName}")
+	int getRowCountByConName(String contactName);
+
+	@Select("select count(*) from tbl_supplier where postcode = #{postcode}")
+	int getRowCountByPos(String postcode);
+	
+	@Select("select count(*) from tbl_supplier")
+	int getAllRowCount();
 }
